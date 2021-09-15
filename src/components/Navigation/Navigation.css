@@ -1,0 +1,58 @@
+.header__account {
+  border: 1px solid red ;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0;
+  /* padding-top: 21px; */
+}
+
+.header__account-button {
+  margin: 0;
+  margin-right: 14px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  color: #FFF;
+  width: 76px;
+  height: 32px;
+  border: none;
+  background-color: #3456F3;
+  border-radius: 3px;
+  cursor: pointer;
+}
+
+.header__account-button:hover {
+  opacity: 0.8;
+}
+
+.header__account-link {
+  margin: 0;
+  padding: 0;
+  margin-right: 30px;
+  font-style: normal;
+  font-weight: 500;
+  font-size: 12px;
+  line-height: 16px;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+.header__account-link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 768px) {
+  .header__account-button {
+    margin-right: 30px;
+  }
+}
+
+@media screen and (min-width: 920px) {
+  .header__account-button {
+    margin-right: 70px;
+  }
+}

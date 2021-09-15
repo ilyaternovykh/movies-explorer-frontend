@@ -1,0 +1,12 @@
+.page {
+  margin: 0;
+  font-family: 'Inter', 'Arial', sans-serif;
+  background-color: #FAFAFA;
+  max-width: 100%;
+  min-width: 320px;
+}
+
+.page__container {
+  max-width: 1280px;
+  margin: 0 auto;
+}
