@@ -1,0 +1,135 @@
+.about-project {
+  background-color: #FAFAFA;
+}
+
+.table {
+  margin: 0;
+  padding: 0;
+  margin-top: 60px;
+  list-style-type: none;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.table__cell {
+  margin-top: 56px;
+  max-width: 319px;
+}
+
+.table__cell:first-of-type {
+  margin-top: 0;
+}
+
+.cell__title {
+  margin: 0;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 18px;
+  line-height: 22px;
+}
+
+.cell__text {
+  margin: 0;
+  margin-top: 16px;
+  font-weight: 400;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 16px;
+}
+
+.time-table {
+  margin: 0 auto;
+  padding: 0;
+  padding-bottom: 70px;
+  color: #A0A0A0;
+  margin-top: 60px;
+  max-width: 284px;
+  list-style-type: none;
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  grid-template-rows: 1fr 1fr;
+}
+
+.time-table__cell {
+  margin: 0;
+  padding: 0;
+}
+
+.cell__description {
+  font-weight: 400;
+  font-style: normal;
+  font-size: 11px;
+  line-height: 13px;
+  text-align: center;
+}
+
+.cell-color_blue {
+  background-color: #3456F3;
+  color: #FFF;
+}
+
+.cell-color_gray {
+  background-color: #F2F2F2;
+  color: #000;
+}
+
+@media screen and (min-width: 768px) {
+  .table {
+    margin-top: 70px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+
+  }
+
+  .table__cell {
+    margin-top: 0;
+  }
+
+  .cell__title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .cell__text {
+    margin-top: 22px;
+    font-size: 12px;
+    line-height: 18px;
+  }
+
+  .time-table {
+    max-width: 668px;
+    margin-top: 93px;
+    padding-bottom: 90px;
+    grid-template-columns: 1fr 3fr;
+  }
+
+  .cell__description {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .cell__title {
+    font-size: 20px;
+    line-height: 24px;
+  }
+
+  .cell__text {
+    margin-top: 26px;
+    font-size: 14px;
+    line-height: 20px;
+  }
+
+  .table__cell {
+    max-width: 550px;
+  }
+
+  .time-table {
+    max-width: 1140px;
+    grid-template-columns: 1fr 4fr;
+  }
+}
