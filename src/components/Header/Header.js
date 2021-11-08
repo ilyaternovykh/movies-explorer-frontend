@@ -2,7 +2,7 @@ import Navigation from '../Navigation/Navigation';
 
 function Header({ headerStatus, menuValue }) {
   const headerClassName = (
-    `header ${headerStatus ? 'header__landing' : ''}`
+    `header ${headerStatus ? 'header__landing' : ''} page-padding`
   );
 
   return(

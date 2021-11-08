@@ -10,7 +10,7 @@
 
 .header__account-button {
   margin: 0;
-  margin-right: 14px;
+  /* margin-right: 14px; */
   font-style: normal;
   font-weight: 500;
   font-size: 12px;
@@ -45,7 +45,7 @@
   opacity: 0.7;
 }
 
-@media screen and (min-width: 768px) {
+/* @media screen and (min-width: 768px) {
   .header__account-button {
     margin-right: 30px;
   }
@@ -55,4 +55,4 @@
   .header__account-button {
     margin-right: 70px;
   }
-}
+} */

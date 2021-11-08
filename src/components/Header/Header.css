@@ -20,17 +20,17 @@
   background-repeat: no-repeat;
   background-position: center;
   /* margin-top: 18px; */
-  margin-left: 14px;
+  /* margin-left: 14px; */
 }
 
 @media screen and (min-width: 768px) {
   .header__logo {
-    margin-left: 30px;
+    /* margin-left: 30px; */
   }
 }
 
 @media screen and (min-width: 920px) {
   .header__logo {
-    margin-left: 70px;
+    /* margin-left: 70px; */
   }
 }
