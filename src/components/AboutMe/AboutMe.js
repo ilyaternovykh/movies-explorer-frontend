@@ -1,5 +1,6 @@
 import SectionTitle from "../SectionTitle/SectionTitle";
 import aboutImage from "../../images/about-image.png"
+import Portfolio from "../Portfolio/Portfolio";
 
 function AboutMe() {
 
@@ -40,6 +41,7 @@ function AboutMe() {
         </div>
         <img className="about__main-illustration" src={aboutImage} alt="Фото студента" />
       </div>
+      <Portfolio />
     </section>
   );
 }
