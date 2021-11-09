@@ -1,6 +1,7 @@
 import Header from '../Header/Header';
 import Promo from '../Promo/Promo';
 import AboutProject from '../AboutProject/AboutProject'
+import Techs from '../Techs/Techs';
 
 function Main() {
 
@@ -13,6 +14,7 @@ function Main() {
     <main className="content">
       <Promo />
       <AboutProject />
+      <Techs />
     </main>
     </>
   );
