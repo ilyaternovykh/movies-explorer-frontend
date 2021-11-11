@@ -33,7 +33,7 @@
   padding: 0;
   margin-right: 30px;
   font-style: normal;
-  font-weight: 500;
+  font-weight: 400;
   font-size: 12px;
   line-height: 16px;
   cursor: pointer;
@@ -43,6 +43,112 @@
 
 .header__account-link:hover {
   opacity: 0.7;
+}
+
+.header__menu {
+  display: none;
+  /* display: flex;
+  flex-direction: column;
+  justify-content: stretch; */
+  flex-grow: 2;
+}
+
+.header__menu-burger {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  flex-grow: 2;
+}
+
+.header__menu-burger-button {
+  background: none;
+  border: none;
+  width: 40px;
+  height: 43px;
+  cursor: pointer;
+}
+
+.header__menu-burger-button:hover {
+  opacity: 0.8;
+}
+
+.header__menu-burger-image {
+  width: 40px;
+}
+
+.test {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+}
+
+.header__menu-links {
+  border: 1px solid red ;
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-end;
+  align-items: center;
+  padding: 0;
+  /* padding-top: 21px; */
+}
+
+.header__menu-profile {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+.header__menu-profile-link {
+  display: flex;
+  flex-direction: row;
+  justify-content: flex-start;
+  align-items: center;
+  cursor: pointer;
+  text-decoration: none;
+  color: #000;
+}
+
+.header__menu-image {
+  width: 26px;
+  border-radius: 4px;
+}
+
+@media screen and (min-width: 1024px) {
+  .header__menu {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .header__menu-burger {
+    display: none;
+  }
+
+  .header__menu-link {
+    margin: 0;
+    padding: 0;
+    margin-right: 16px;
+    font-style: normal;
+    font-weight: 400;
+    font-size: 13px;
+    line-height: 18px;
+    cursor: pointer;
+    text-decoration: none;
+    color: #000;
+  }
+
+  .header__menu-link:hover {
+    opacity: 0.7;
+  }
+
+  .header__menu-link_active {
+    /* border-bottom: 2px solid #000; */
+    font-weight: 500;
+  }
 }
 
 /* @media screen and (min-width: 768px) {

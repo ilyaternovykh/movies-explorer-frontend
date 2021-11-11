@@ -4,7 +4,7 @@ function AboutProject() {
 
 
   return(
-    <section className="about-project page-padding">
+    <section id='about-project' className="about-project page-padding">
       <SectionTitle 
         title={'О проекте'}
       />
