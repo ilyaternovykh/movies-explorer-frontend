@@ -6,6 +6,7 @@ import Footer from '../Footer/Footer';
 import Movies from '../Movies/Movies';
 import SavedMovies from '../SavedMovies/SavedMovies';
 import MenuPopup from '../MenuPopup/MenuPopup';
+import PageNotFound from '../PageNotFound/PageNotFound';
 
 
 function App() {
@@ -29,6 +30,7 @@ function App() {
             menuValue="Регистрация"
           />
           <Main />
+          <Footer />
         </Route>
         <Route path="/movies">
           <Header 
@@ -37,6 +39,7 @@ function App() {
             onMenuPopup={handleMenuPopupClick}
           />
           <Movies />
+          <Footer />
         </Route>
         <Route path="/saved-movies">
           <Header 
@@ -45,9 +48,12 @@ function App() {
             onMenuPopup={handleMenuPopupClick}
           />
           <SavedMovies />
+          <Footer />
+        </Route>
+        <Route path="*">
+          <PageNotFound />
         </Route>
       </Switch>
-      <Footer />
       <MenuPopup
         isOpen={isMenuPopupOpen} 
         onClose={closeAllPopups}

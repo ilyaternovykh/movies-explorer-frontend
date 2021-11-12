@@ -61,6 +61,11 @@
   border-radius: 48px;
   margin-left: 52px;
   margin-right: 19px;
+  cursor: pointer;
+}
+
+.search-form__submit:hover {
+  opacity: 0.8;
 }
 
 .search-form__image-button {

@@ -1,0 +1,20 @@
+.button {
+  margin: 0;
+  padding: 0;
+  font-weight: 400;
+  font-size: 12px;
+  line-height: 14.5px;
+  text-decoration: none;
+  color: #3456F3;
+}
+
+.button:hover {
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 768px) {
+  .button {
+    font-size: 14px;
+    line-height: 17px;
+  }
+}
