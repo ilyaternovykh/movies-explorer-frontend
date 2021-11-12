@@ -1,5 +1,4 @@
 .header__account {
-  border: 1px solid red ;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
@@ -85,7 +84,6 @@
 }
 
 .header__menu-links {
-  border: 1px solid red ;
   display: flex;
   flex-direction: row;
   justify-content: flex-end;
