@@ -39,6 +39,10 @@
 }
 
 @media screen and (min-width: 768px) {
+  .not-found {
+    justify-content: flex-start;
+  }
+  
   .not-found__title {
     font-size: 140px;
     line-height: 169.5px;
@@ -52,7 +56,7 @@
   }
 
   .button_type_to-main {
-    margin-top: 184pxpx;
+    margin-top: 184px;
   }
 }
 
