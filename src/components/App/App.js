@@ -8,6 +8,7 @@ import SavedMovies from '../SavedMovies/SavedMovies';
 import MenuPopup from '../MenuPopup/MenuPopup';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
+import Login from '../Login/Login';
 
 
 function App() {
@@ -53,7 +54,12 @@ function App() {
         </Route>
         <Route path="/signup">
           <Register 
-             button="Зарегистриоваться"
+            button="Зарегистриоваться"
+          />
+        </Route>
+        <Route path="/signin">
+          <Login
+            button="Войти"
           />
         </Route>
         <Route path="*">
