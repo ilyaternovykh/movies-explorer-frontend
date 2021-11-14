@@ -1,0 +1,168 @@
+.about {
+  background-color: #FAFAFA;
+  padding-left: 14px;
+  padding-right: 14px;
+}
+
+.about__content {
+  display: flex;
+  flex-direction: column-reverse;
+  justify-content: flex-start;
+  align-items: center;
+  padding-bottom: 69px;
+  margin-top: 60px;
+}
+
+.about__main-illustration {
+  margin: 0;
+  padding: 0;
+  width: 292px;
+  height: 352px;
+  border-radius: 10px;
+}
+
+.about__introduction {
+  margin: 0;
+  margin-top: 40px;
+}
+
+.about__title {
+  margin: 0;
+  padding: 0;
+  font-size: 30px;
+  line-height: 36.3px;
+  letter-spacing: -0.04em;
+}
+
+.about__subtitle {
+  margin: 0;
+  padding: 0;
+  font-size: 11px;
+  line-height: 16px;
+  font-weight: 500;
+  margin-top: 20px;
+}
+
+.about__description {
+  margin: 0;
+  padding: 0;
+  margin-top: 20px;
+  font-size: 11px;
+  line-height: 16px;
+  max-width: 292px;
+  font-weight: 500;
+}
+
+.about__link-list {
+  margin: 0;
+  padding: 0;
+  list-style-type: none;
+  margin-top: 40px;
+  display: flex;
+  flex-direction: row;
+}
+
+.about__link-cell {
+  margin: 0;
+  margin-left: 26px;
+}
+
+.about__link-cell:first-of-type {
+  margin-left: 0;
+}
+
+.aboutme__link {
+  text-decoration: none;
+  color: #000;
+  margin: 0;
+  font-weight: 500;
+  font-size: 14px;
+  line-height: 17px;
+}
+
+.aboutme__link:hover {
+  opacity: 0.7;
+}
+
+@media screen and (min-width: 768px) {
+  .about {
+    background-color: #FAFAFA;
+    padding-left: 0;
+    padding-right: 0;
+  }
+
+  .about__content {
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-start;
+    padding-bottom: 91px;
+    margin-top: 66px;
+  }
+
+  .about__main-illustration {
+    width: 255px;
+    height: 307px;
+  }
+
+  .about__introduction {
+    margin-top: 0px;
+  }
+
+  .about__title {
+    font-size: 40px;
+    line-height: 40px;
+  }
+
+  .about__subtitle {
+    font-size: 12px;
+    line-height: 18px;
+    margin-top: 16px;
+  }
+
+  .about__description {
+    font-size: 12px;
+    line-height: 18px;
+    max-width: 362px;
+  }
+
+  .about__link-list {
+    margin-top: 87px;
+  }
+
+  .about__link-cell {
+    margin-left: 20px;
+  }
+}
+
+@media screen and (min-width: 1024px) {
+  .about__content {
+    padding-bottom: 100px;
+  }
+
+  .about__main-illustration {
+    width: 270px;
+    height: 327px;
+  }
+
+  .about__title {
+    font-size: 50px;
+    line-height: 58px;
+  }
+
+  .about__subtitle {
+    font-size: 18px;
+    line-height: 20px;
+    margin-top: 18px;
+  }
+
+  .about__description {
+    font-size: 14px;
+    line-height: 22px;
+    max-width: 600px;
+    margin-top: 26px;
+  }
+
+  .about__link-list {
+    margin-top: 99px;
+  }
+}
