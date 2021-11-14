@@ -10,7 +10,10 @@ function Navigation({ link, menuValue, onSignIn, headerStatus, onMenuPopup }) {
     {headerStatus ? 
       <nav className="header__account">
         <Link to='/signup' className="header__account-link">{menuValue}</Link>
-        <button onClick={onSignIn} className="header__account-button">Войти</button>
+        <Link to='/signin' className="header__profile-link">
+          <button onClick={onSignIn} className="header__account-button">Войти</button>
+        </Link>
+        
       </nav>
       :
       <>

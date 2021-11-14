@@ -9,6 +9,7 @@ import MenuPopup from '../MenuPopup/MenuPopup';
 import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
+import Profile from '../Profile/Profile';
 
 
 function App() {
@@ -20,6 +21,16 @@ function App() {
 
   const handleMenuPopupClick = () => {
     setIsMenuPopupOpen(!isMenuPopupOpen);
+  }
+
+  const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
+
+  const closeFormButton = () => {
+    setIsFormButtonEnable(false);
+  };
+
+  const handleFormButtonClick = () => {
+    setIsFormButtonEnable(!isFormButtonEnable);
   }
 
   return(
@@ -37,7 +48,7 @@ function App() {
         <Route path="/movies">
           <Header 
             headerStatus={false}
-            menuValue="Регистрация"
+            menuValue=""
             onMenuPopup={handleMenuPopupClick}
           />
           <Movies />
@@ -46,7 +57,7 @@ function App() {
         <Route path="/saved-movies">
           <Header 
             headerStatus={false}
-            menuValue="Регистрация"
+            menuValue=""
             onMenuPopup={handleMenuPopupClick}
           />
           <SavedMovies />
@@ -60,6 +71,18 @@ function App() {
         <Route path="/signin">
           <Login
             button="Войти"
+          />
+        </Route>
+        <Route path="/profile">
+          <Header 
+            headerStatus={false}
+            menuValue=""
+          />
+          <Profile
+            button="Сохранить"
+            onFormButton={handleFormButtonClick}
+            isOpen={isFormButtonEnable} 
+            onClose={closeFormButton}
           />
         </Route>
         <Route path="*">
