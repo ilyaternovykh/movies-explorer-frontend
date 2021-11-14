@@ -74,6 +74,27 @@
   margin-top: 14px;
 }
 
+.cards__delete-button {
+  background-image: url(../../images/delete-button.svg);
+  width: 7px;
+  height: 7px;
+  margin: 0;
+  padding: 0;
+  border: none;
+  margin-right: 21.5px;
+  align-self: center;
+  cursor: pointer;
+}
+
+.cards__info-saved {
+  cursor: pointer;
+}
+
+.cards__description_type_saved {
+  cursor: pointer;
+  
+}
+
 @media screen and (min-width: 665px) {
   /* .cards__item {
     width: 339px;

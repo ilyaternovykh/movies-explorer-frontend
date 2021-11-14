@@ -36,6 +36,10 @@
   margin-bottom: 80px;
 }
 
+.cards_type_saved {
+  margin-bottom: 166px;
+}
+
 @media screen and (min-width: 665px) {
   /* .cards {
     grid-template-columns: repeat(auto-fit, 339px);
@@ -56,6 +60,10 @@
   .cards-grid__button {
     margin-top: 80px;
   }
+
+  .cards_type_saved {
+    margin-bottom: 170px;
+  }
 }
 
 @media screen and (min-width: 1024px) {
@@ -67,5 +75,9 @@
 
   .cards-grid__button {
     margin-top: 60px;
+  }
+
+  .cards_type_saved {
+    margin-bottom: 247px;
   }
 }
