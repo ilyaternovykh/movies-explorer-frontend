@@ -20,7 +20,7 @@ function AboutMe() {
             <li className="about__link-cell">
               <a
                 href="https://www.facebook.com/"
-                className="about__link" 
+                className="aboutme__link" 
                 target="_blank" 
                 rel="noreferrer"
               >
@@ -30,7 +30,7 @@ function AboutMe() {
             <li className="about__link-cell">
               <a
                 href="https://github.com/"
-                className="about__link" 
+                className="aboutme__link" 
                 target="_blank"
                 rel="noreferrer"
               >

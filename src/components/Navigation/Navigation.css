@@ -12,11 +12,11 @@
   /* margin-right: 14px; */
   font-style: normal;
   font-weight: 500;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 16px;
+  width: 54px;
+  height: 26px;
   color: #FFF;
-  width: 76px;
-  height: 32px;
   border: none;
   background-color: #3456F3;
   border-radius: 3px;
@@ -30,10 +30,10 @@
 .header__account-link {
   margin: 0;
   padding: 0;
-  margin-right: 30px;
+  margin-right: 14px;
   font-style: normal;
   font-weight: 400;
-  font-size: 12px;
+  font-size: 10px;
   line-height: 16px;
   cursor: pointer;
   text-decoration: none;
@@ -112,6 +112,19 @@
 .header__menu-image {
   width: 26px;
   border-radius: 4px;
+}
+
+@media screen and (min-width: 768px) {
+  .header__account-button {
+    font-size: 12px;
+    width: 76px;
+    height: 32px;
+  }
+
+  .header__account-link {
+    font-size: 12px;
+    margin-right: 30px;
+  }
 }
 
 @media screen and (min-width: 1024px) {

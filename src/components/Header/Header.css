@@ -14,6 +14,7 @@
   justify-content: space-between;
   align-items: center;
   min-height: 74px;
+  padding: 0 14px;
 }
 
 .header__logo {
@@ -34,10 +35,18 @@
   .header__logo {
     /* margin-left: 30px; */
   }
+
+  .header__landing {
+    padding: 0 30px;
+  }
 }
 
 @media screen and (min-width: 920px) {
   .header__logo {
     /* margin-left: 70px; */
+  }
+
+  .header__landing {
+    padding: 0 70px;
   }
 }

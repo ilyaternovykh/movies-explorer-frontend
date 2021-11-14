@@ -28,6 +28,7 @@
   font-style: normal;
   font-size: 18px;
   line-height: 22px;
+  letter-spacing: -0.04em;
 }
 
 .cell__text {
@@ -42,7 +43,7 @@
 .time-table {
   margin: 0 auto;
   padding: 0;
-  padding-bottom: 70px;
+  padding-bottom: 59px;
   color: #A0A0A0;
   margin-top: 60px;
   max-width: 284px;
@@ -55,6 +56,10 @@
 .time-table__cell {
   margin: 0;
   padding: 0;
+  height: 35px;
+  display: flex;
+  justify-content: center;
+  align-items: center;
 }
 
 .cell__description {
@@ -63,6 +68,8 @@
   font-size: 11px;
   line-height: 13px;
   text-align: center;
+  margin: 0;
+  padding: 0;
 }
 
 .cell-color_blue {
@@ -102,8 +109,8 @@
   .time-table {
     max-width: 668px;
     margin-top: 93px;
-    padding-bottom: 90px;
-    grid-template-columns: 1fr 3fr;
+    padding-bottom: 87px;
+    grid-template-columns: 1fr 4fr;
   }
 
   .cell__description {
@@ -131,5 +138,7 @@
   .time-table {
     max-width: 1140px;
     grid-template-columns: 1fr 4fr;
+    margin-top: 110px;
+    padding-bottom: 97px;
   }
 }
