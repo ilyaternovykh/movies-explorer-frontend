@@ -36,8 +36,8 @@
 
 .popup__close {
   color: #000;
-  min-width: 37px;
-  height: 37px;
+  min-width: 30px;
+  height: 30px;
   margin: 0;
   padding: 0;
   background: transparent;
@@ -47,8 +47,8 @@
   background-size: contain;
   border: none;
   position: absolute;
-  top: 13.5px;
-  right: 13.5px;
+  top: 14px;
+  right: -4px;
   cursor: pointer;
   margin-right: 19px;
 }
@@ -67,7 +67,7 @@
   }
 
   .popup__close {
-    top: 22.5px;
-    right: 22.5px;
+    top: 23px;
+    right: 4px;
   }
 }

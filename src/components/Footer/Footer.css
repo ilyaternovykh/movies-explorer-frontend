@@ -69,6 +69,9 @@
     flex-direction: row;
     justify-content: space-between;
     align-items: flex-start;
+    font-size: 13px;
+    line-height: 15.73px;
+    padding-bottom: 20px;
   }
 
   .footer__menu-links {

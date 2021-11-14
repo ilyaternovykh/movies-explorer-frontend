@@ -1,8 +1,19 @@
+import { useLocation } from "react-router-dom";
+
 function Footer() {
+  const location = useLocation().pathname;
+
+  const footerClassName = (
+    location === "/movies" || "saved-movies" ? (
+      "footer page-padding-movies"
+    ) : (
+      "footer page-padding"
+    )
+  );
 
 
   return(
-    <footer className="footer page-padding">
+    <footer className={footerClassName}>
       <p className="footer__description">Учебный проект Яндекс.Практикум х BeatFilm.</p>
       <div className="footer__content">
         <p className="footer__copyright">&copy; 2020</p>

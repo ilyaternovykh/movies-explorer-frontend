@@ -49,4 +49,8 @@
   .header__menu-burger-link {
     margin-bottom: 28px;
   }
+
+  .header__menu-burger-links {
+    padding-top: 159px;
+  }
 }
