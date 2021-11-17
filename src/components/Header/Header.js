@@ -1,8 +1,8 @@
 import Navigation from '../Navigation/Navigation';
 
-function Header({ headerStatus, menuValue, onMenuPopup }) {
+function Header({ loggedIn, menuValue, onMenuPopup }) {
   const headerClassName = (
-    `header ${headerStatus ? 'header__landing' : 'page-padding-header'}`
+    `header ${loggedIn ? 'page-padding-header' : 'header__landing'}`
   );
 
   return(
@@ -13,7 +13,7 @@ function Header({ headerStatus, menuValue, onMenuPopup }) {
       </a>
       <Navigation 
         menuValue={menuValue}
-        headerStatus={headerStatus}
+        loggedIn={loggedIn}
         onMenuPopup={onMenuPopup}
       />
     </header> 

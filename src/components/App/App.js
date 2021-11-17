@@ -10,10 +10,12 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 
 
 function App() {
   const [isMenuPopupOpen, setIsMenuPopupOpen] = React.useState(false);
+  const [loggedIn, setLoggedIn] = React.useState(false);
 
   const closeAllPopups = () => {
     setIsMenuPopupOpen(false);
@@ -37,32 +39,56 @@ function App() {
     <div className="page">
       <div className="page__container">
       <Switch>
+        <ProtectedRoute
+          exact path="/movies"
+          loggedIn={loggedIn}
+          component={Movies}
+          menuValue=""
+          onMenuPopup={handleMenuPopupClick}
+        />
+        <ProtectedRoute
+          exact path="/saved-movies"
+          loggedIn={loggedIn}
+          component={SavedMovies}
+          menuValue=""
+          onMenuPopup={handleMenuPopupClick}
+        />
+        <ProtectedRoute
+          exact path="/profile"
+          loggedIn={loggedIn}
+          component={Profile}
+          menuValue=""
+          button="Сохранить"
+          onFormButton={handleFormButtonClick}
+          isOpen={isFormButtonEnable} 
+          onClose={closeFormButton}
+        />
         <Route exact path="/">
           <Header 
-            headerStatus={true}
+            loggedIn={loggedIn}
             menuValue="Регистрация"
           />
           <Main />
           <Footer />
         </Route>
-        <Route path="/movies">
+        {/* <Route path="/movies">
           <Header 
-            headerStatus={false}
+            loggedIn={false}
             menuValue=""
             onMenuPopup={handleMenuPopupClick}
           />
           <Movies />
           <Footer />
-        </Route>
-        <Route path="/saved-movies">
+        </Route> */}
+        {/* <Route path="/saved-movies">
           <Header 
-            headerStatus={false}
+            loggedIn={loggedIn}
             menuValue=""
             onMenuPopup={handleMenuPopupClick}
           />
           <SavedMovies />
           <Footer />
-        </Route>
+        </Route> */}
         <Route path="/signup">
           <Register 
             button="Зарегистриоваться"
@@ -73,9 +99,9 @@ function App() {
             button="Войти"
           />
         </Route>
-        <Route path="/profile">
+        {/* <Route path="/profile">
           <Header 
-            headerStatus={false}
+            loggedIn={loggedIn}
             menuValue=""
           />
           <Profile
@@ -84,7 +110,14 @@ function App() {
             isOpen={isFormButtonEnable} 
             onClose={closeFormButton}
           />
-        </Route>
+        </Route> */}
+        {/* <Route>
+          {loggedIn ? (
+            <Redirect to="/movies" />
+           ) : (
+            <Redirect exact to="/" />
+           )}
+        </Route> */}
         <Route path="*">
           <PageNotFound />
         </Route>

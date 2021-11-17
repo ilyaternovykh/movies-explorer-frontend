@@ -1,14 +1,24 @@
+import Footer from "../Footer/Footer";
+import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function SavedMovies() {
+function SavedMovies({ loggedIn, menuValue, onMenuPopup }) {
 
 
   return(
-    <main className="movies page-padding-movies">
+    <>
+      <Header 
+        loggedIn={loggedIn}
+        menuValue={menuValue}
+        onMenuPopup={onMenuPopup}
+      />
+      <main className="movies page-padding-movies">
       <SearchForm />
       <MoviesCardList />
-    </main>
+      </main>
+      <Footer />
+    </>
   );
 }
 
