@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Switch, useHistory } from 'react-router-dom';
 import Header from '../Header/Header';
 import Main from '../Main/Main';
 import Footer from '../Footer/Footer';
@@ -16,6 +16,13 @@ import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 function App() {
   const [isMenuPopupOpen, setIsMenuPopupOpen] = React.useState(false);
   const [loggedIn, setLoggedIn] = React.useState(false);
+  const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
+
+  const history = useHistory();
+
+  const onGoBack = () => {
+    history.goBack();
+  };
 
   const closeAllPopups = () => {
     setIsMenuPopupOpen(false);
@@ -24,8 +31,6 @@ function App() {
   const handleMenuPopupClick = () => {
     setIsMenuPopupOpen(!isMenuPopupOpen);
   }
-
-  const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
 
   const closeFormButton = () => {
     setIsFormButtonEnable(false);
@@ -62,6 +67,7 @@ function App() {
           onFormButton={handleFormButtonClick}
           isOpen={isFormButtonEnable} 
           onClose={closeFormButton}
+          onMenuPopup={handleMenuPopupClick}
         />
         <Route exact path="/">
           <Header 
@@ -119,7 +125,9 @@ function App() {
            )}
         </Route> */}
         <Route path="*">
-          <PageNotFound />
+          <PageNotFound 
+            onGoBack={onGoBack}
+          />
         </Route>
       </Switch>
       <MenuPopup

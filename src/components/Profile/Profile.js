@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "../Header/Header";
 
 
-function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue }) {
+function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, onMenuPopup }) {
 
   const [name, setName] = React.useState("Виталий");
   const [email, setDescription] = React.useState("pochta@yandex.ru");
@@ -26,6 +26,7 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue })
       <Header 
         loggedIn={loggedIn}
         menuValue={menuValue}
+        onMenuPopup={onMenuPopup}
       />
       <main className="profile profile-padding">
         <div className="profile__content">
