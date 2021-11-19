@@ -1,23 +1,34 @@
 import React from 'react';
 import Header from "../Header/Header";
+import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 
-function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, onMenuPopup, onSignOut }) {
+function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, onMenuPopup, onSignOut, onUpdateUser }) {
+  const currentUser = React.useContext(CurrentUserContext);
 
-  const [name, setName] = React.useState("Виталий");
-  const [email, setDescription] = React.useState("pochta@yandex.ru");
+  const [name, setName] = React.useState("");
+  const [email, setEmail] = React.useState("");
+
+  React.useEffect(() => {
+    setName(currentUser.name);
+    setEmail(currentUser.email);
+  }, [currentUser]);
   
   function handleChangeName(e) {
     setName(e.target.value);
   }
 
-  function handleChangeDescription(e) {
-    setDescription(e.target.value);
+  function handleChangeEmail(e) {
+    setEmail(e.target.value);
   }
 
   function handleSubmit(e) {
     e.preventDefault();
 
+    onUpdateUser({
+      name,
+      email
+    });
   }
 
 
@@ -31,7 +42,7 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
       <main className="profile profile-padding">
         <div className="profile__content">
           <form className="form-profile" onSubmit={handleSubmit}>
-            <h2 className="profile__title">Привет, Виталий!</h2>
+            <h2 className="profile__title">Привет, {currentUser.name}!</h2>
             <div className="form-profile__input-group">
               <div className="form-profile__input-text-group">
                 <p className="form-profile__input-title">Имя</p>
@@ -52,7 +63,7 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
                   name="email"
                   type="email"
                   value={email || ""}
-                  onChange={handleChangeDescription}
+                  onChange={handleChangeEmail}
                 />
               </div>
             </div>

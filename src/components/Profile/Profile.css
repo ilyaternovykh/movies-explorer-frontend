@@ -107,6 +107,10 @@
   border: none;
 }
 
+.profile__buttons:hover {
+  opacity: 0.7;
+}
+
 .profile__buttons_color_red {
   color: #EE3465;
   margin-top: 16px;

@@ -109,6 +109,15 @@ function App() {
       });
   }
 
+  const handleUpdateUser = (userInfo) => {
+    apiMain.editUserInfo(userInfo)
+    .then(data => {
+      setСurrentUser(data);
+      closeFormButton();
+    })
+    .catch(err => console.error(err))
+  }
+
   function onSignOut() {
     localStorage.removeItem('token');
     setLoggedIn(false);
@@ -145,6 +154,7 @@ function App() {
             onClose={closeFormButton}
             onMenuPopup={handleMenuPopupClick}
             onSignOut={onSignOut}
+            onUpdateUser={handleUpdateUser}
           />
           <Route exact path="/">
             <Header 
