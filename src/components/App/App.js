@@ -109,6 +109,12 @@ function App() {
       });
   }
 
+  function onSignOut() {
+    localStorage.removeItem('token');
+    setLoggedIn(false);
+    history.push('/');
+  }
+
   return(
     <CurrentUserContext.Provider value={currentUser}>
       <div className="page">
@@ -138,11 +144,13 @@ function App() {
             isOpen={isFormButtonEnable} 
             onClose={closeFormButton}
             onMenuPopup={handleMenuPopupClick}
+            onSignOut={onSignOut}
           />
           <Route exact path="/">
             <Header 
               loggedIn={loggedIn}
               menuValue="Регистрация"
+              onMenuPopup={handleMenuPopupClick}
             />
             <Main />
             <Footer />

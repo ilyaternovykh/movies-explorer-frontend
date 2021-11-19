@@ -2,7 +2,7 @@ import React from 'react';
 import Header from "../Header/Header";
 
 
-function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, onMenuPopup }) {
+function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, onMenuPopup, onSignOut }) {
 
   const [name, setName] = React.useState("Виталий");
   const [email, setDescription] = React.useState("pochta@yandex.ru");
@@ -65,7 +65,7 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
           </form>
           <div className={`profile__buttons-group ${isOpen ? 'profile__buttons-group_disable' : ''}`}>
             <button className="profile__buttons" onClick={onFormButton}>Редактировать</button>
-            <button className="profile__buttons profile__buttons_color_red">Выйти из аккаунта</button>
+            <button className="profile__buttons profile__buttons_color_red" onClick={onSignOut}>Выйти из аккаунта</button>
           </div>
 
         </div>
