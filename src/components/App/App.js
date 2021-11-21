@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -14,6 +14,7 @@ import Profile from '../Profile/Profile';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as apiAuth from '../../utils/AuthApi';
 import apiMain from '../../utils/MainApi';
+import apiMovies from '../../utils/MoviesApi';
 
 
 function App() {
@@ -21,9 +22,30 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
+  const [movies, setMovies] = React.useState([]);
 
 
   const history = useHistory();
+  const location = useLocation();
+
+  React.useEffect(() => {
+    const token = localStorage.getItem('token');
+    const tokenCheck = () => {
+      if (token){
+        apiAuth.getContent(token).then((res) => {
+          if (res.email) {
+            setLoggedIn(true);
+            history.push(location.pathname);
+          } else {
+            history.push('/');
+          }
+        }).catch(err => console.error(err));
+      }
+    }
+
+    tokenCheck();
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   React.useEffect(() => {
     if (loggedIn) {
@@ -34,26 +56,36 @@ function App() {
     }
   }, [loggedIn]);
 
+  // const tokenCheck = () => {
+  //   if (localStorage.getItem('token')){
+  //     const token = localStorage.getItem('token');
+  //     apiAuth.getContent(token).then((res) => {
+  //       if (res.email) {
+  //         // setUserData({
+  //         //   email: res.email
+  //         // });
+  //         setLoggedIn(true);
+  //         history.push(location.pathname);
+  //         // history.push('./movies');
+  //       } else {
+  //         history.push('/');
+  //       }
+  //     }).catch(err => console.error(err));
+  //   }
+  // }
+
+  // React.useEffect(() => {
+  //   tokenCheck();
+  // }, []);
+
   React.useEffect(() => {
-    const tokenCheck = () => {
-      const token = localStorage.getItem('token');
-
-      if (token){
-        apiAuth.getContent(token).then((res) => {
-          if (res.email) {
-            // setUserData({
-            //   email: res.email
-            // });
-            setLoggedIn(true);
-            history.push('./movies');
-          }
-        }).catch(err => console.error(err));
-      }
+    if (loggedIn) {
+      apiMovies.getMovies()
+      .then(data => {
+        setMovies(data);
+      }).catch(err => console.error(err))
     }
-
-    tokenCheck();
-  }, [history]);
-
+  }, [loggedIn]);
 
   const onGoBack = () => {
     history.goBack();
@@ -133,6 +165,7 @@ function App() {
             exact path="/movies"
             loggedIn={loggedIn}
             component={Movies}
+            movies={movies}
             menuValue=""
             onMenuPopup={handleMenuPopupClick}
           />

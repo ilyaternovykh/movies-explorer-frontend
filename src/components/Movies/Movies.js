@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function Movies({ loggedIn, menuValue, onMenuPopup }) {
+function Movies({ loggedIn, menuValue, onMenuPopup, movies }) {
 
 
   return(
@@ -15,7 +15,9 @@ function Movies({ loggedIn, menuValue, onMenuPopup }) {
       />
       <main className="movies page-padding-movies">
         <SearchForm />
-        <MoviesCardList />
+        <MoviesCardList
+          movies={movies}
+        />
       </main>
       <Footer />
     </>
