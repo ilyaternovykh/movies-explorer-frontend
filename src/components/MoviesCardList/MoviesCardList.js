@@ -41,26 +41,26 @@ function MoviesCardList({ movies }) {
 
   useEffect(() => {
     switch (true) {
-      case widthWindow >= 1280:
+      case widthWindow >= 1280 && movies.length > 12:
         setGridSize(12);
         setButtonSize(3);
         break;
-      case widthWindow >= 768 && widthWindow < 1280:
+      case widthWindow >= 768 && widthWindow < 1280 && movies.length > 8:
         setGridSize(8);
         setButtonSize(2);
         break;
-      case widthWindow >= 320 && widthWindow < 768:
+      case widthWindow >= 320 && widthWindow < 768 && movies.length > 5:
         setGridSize(5);
         setButtonSize(1);
         break;
       default:
-        setGridSize(12);
+        setGridSize(movies.length);
         break;
     }
-  }, [widthWindow])
+  }, [widthWindow, movies.length])
 
   const cardsGridButtonClassName = (
-    `cards-grid__button ${movies.length !== gridSize ? '' : 'cards-grid__button_disable'}`
+    `cards-grid__button ${(movies.length !== gridSize) && (movies.length !== 0) ? '' : 'cards-grid__button_disable'}`
   );
 
   const handleButtonClick = () => {
@@ -76,19 +76,23 @@ function MoviesCardList({ movies }) {
 
   return (
     <section className="cards-grid">
-        {location === "/movies" ? (
-          <>
-          <ul className="cards">
-            {movies.slice(0, gridSize).map((props) => (
-            <MoviesCard key={props.id} {...props} location={location} />
-            ))}
-          </ul>
-          <button className={cardsGridButtonClassName} onClick={handleButtonClick}>Ещё</button>
-          </>
+        {movies.length === 0 ? (
+          <p className="">Ничего не найдено</p>
         ) : (
-          <ul className="cards cards_type_saved">
-            {movies.map((props) => (<MoviesCard key={props.id} {...props} location={location} />))}
-          </ul>
+          location === "/movies" ? (
+            <>
+            <ul className="cards">
+              {movies.slice(0, gridSize).map((props) => (
+              <MoviesCard key={props.id} {...props} location={location} />
+              ))}
+            </ul>
+            <button className={cardsGridButtonClassName} onClick={handleButtonClick}>Ещё</button>
+            </>
+          ) : (
+            <ul className="cards cards_type_saved">
+              {movies.map((props) => (<MoviesCard key={props.id} {...props} location={location} />))}
+            </ul>
+          )
         )}
     </section>
   );

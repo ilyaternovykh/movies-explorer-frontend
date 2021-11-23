@@ -22,7 +22,12 @@ function App() {
   const [loggedIn, setLoggedIn] = React.useState(false);
   const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
-  const [movies, setMovies] = React.useState([]);
+  // const [moviesData, setMoviesData] = React.useState([]);
+  const [findedMovies, setFindedMovies] = React.useState([]);
+  const [filteredMovies, setFilteredMovies] = React.useState([]);
+  const [resultMovies, setResultMovies] = React.useState([]);
+  const [isShortFilm, setIsShortFilm] = React.useState(false);
+
 
 
   const history = useHistory();
@@ -78,14 +83,16 @@ function App() {
   //   tokenCheck();
   // }, []);
 
-  React.useEffect(() => {
-    if (loggedIn) {
-      apiMovies.getMovies()
-      .then(data => {
-        setMovies(data);
-      }).catch(err => console.error(err))
-    }
-  }, [loggedIn]);
+  // React.useEffect(() => {
+  //   if (loggedIn) {
+  //     apiMovies.getMovies()
+  //     .then(data => {
+  //       setMovies(data);
+  //     }).catch(err => console.error(err))
+  //   }
+  // }, [loggedIn]);
+
+
 
   const onGoBack = () => {
     history.goBack();
@@ -150,6 +157,60 @@ function App() {
     .catch(err => console.error(err))
   }
 
+  const handleSearch = ({movie}) => {
+    const movieList = JSON.parse(localStorage.getItem('movie-list'));
+
+      if (!movieList) {
+        apiMovies.getMovies()
+          .then(data => {
+            const findedMovieList = data.filter(function(film) {
+              // debugger;
+              return film.nameRU.toLowerCase().includes(movie.toLowerCase());
+            })
+            // setMoviesData(data);
+            setFindedMovies(findedMovieList);
+            setFilteredMovies(filterMovies(findedMovieList));
+            if (isShortFilm === true) {
+              setResultMovies(filterMovies(findedMovieList));
+            } else {
+              setResultMovies(findedMovieList);
+            }
+            localStorage.setItem("movie-list", JSON.stringify(data));
+      }).catch(err => console.error(err))
+      } else {
+        const findedSavedMovieList = movieList.filter(function(film) {
+          // debugger;
+          return film.nameRU.toLowerCase().includes(movie.toLowerCase());
+        })
+        setFindedMovies(findedSavedMovieList);
+        setFilteredMovies(filterMovies(findedSavedMovieList));
+        if (isShortFilm === true) {
+          setResultMovies(filterMovies(findedSavedMovieList));
+        } else {
+          setResultMovies(findedSavedMovieList);
+        }
+      }
+    
+  }
+
+  const handleFilter = () => {
+    // setIsShortFilm(!isShortFilm);
+    if (resultMovies) {
+      if (isShortFilm === false) {
+        setResultMovies(filteredMovies);
+      } else {
+        setResultMovies(findedMovies);
+      }
+    }
+  }
+
+  const filterMovies = (movies) => {
+    return movies.filter(function(film) {
+      // debugger;
+      return film.duration <= 40;
+    })
+  }
+
   function onSignOut() {
     localStorage.removeItem('token');
     setLoggedIn(false);
@@ -165,9 +226,13 @@ function App() {
             exact path="/movies"
             loggedIn={loggedIn}
             component={Movies}
-            movies={movies}
+            movies={resultMovies}
             menuValue=""
             onMenuPopup={handleMenuPopupClick}
+            handleSearch={handleSearch}
+            handleFilter={handleFilter}
+            filterStatus={isShortFilm}
+            setIsShortFilm ={setIsShortFilm}
           />
           <ProtectedRoute
             exact path="/saved-movies"
