@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies }) {
+function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, filterStatus, setIsShortFilm }) {
 
 
   return(
@@ -14,7 +14,11 @@ function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies }) {
         onMenuPopup={onMenuPopup}
       />
       <main className="movies page-padding-movies">
-      <SearchForm />
+      <SearchForm
+        handleFilter={handleFilter}
+        filterStatus={filterStatus}
+        setIsShortFilm ={setIsShortFilm}
+      />
       <MoviesCardList 
         movies={movies}
       />

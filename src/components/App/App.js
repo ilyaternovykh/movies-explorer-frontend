@@ -279,11 +279,54 @@ function App() {
     })
   }
 
-  function handleCardLike(card) {
+  function handleCardLike(card, isLiked) {
+    // console.log(card);
     // const isLiked = card.likes.some(i => i === currentUser._id);
-    const isLiked = card.likes === currentUser._id ? true : false;
-    const promise = isLiked ? (
-        apiMain.dislikeLikeCard(card._id)
+    // const isLiked = card.likes === currentUser._id ? true : false;
+    // const isLiked = JSON.parse(localStorage.getItem('saved-movie-list')).some(
+    //   (movie) => {
+    //     debugger;
+    //     const movieResult = movie.movieId || String(movie.id);
+    //     const cardResult = card.movieId || String(card.id);
+    //     debugger;
+
+    //     return movieResult === cardResult;
+    //   }
+    // ) ? true : false;
+    // console.log(savedMovies);
+    const findDeleteMovie = () => {
+      return savedMovies.find((c) => c.movieId === String(card.id));
+    }
+    const deleteMovie = findDeleteMovie();
+    // console.log(card.thumbnail);
+    const cardTthumbnail = card.thumbnail ? card.thumbnail : `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`;
+    // console.log(isLiked);
+    // debugger;
+
+    isLiked ? (
+        apiMain.dislikeMovie(deleteMovie._id)
+        .then(() => {
+          // card.likes = "";
+          setSavedMovies((prev) =>
+            prev.filter((c) => c._id !== deleteMovie._id)
+          )
+          localStorage.setItem(
+            'saved-movie-list',
+            JSON.stringify(
+              JSON.parse(localStorage.getItem('saved-movie-list')).filter(
+                (movie) => movie._id !== deleteMovie._id
+              )
+            )
+          );
+
+          const dislikedResultMovies = resultMovies.map((c) => {
+            // debugger;
+            return c.id === card.id ? card : c
+          });
+          // console.log(dislikedResultMovies);
+          setResultMovies(dislikedResultMovies);
+        })
+        .catch(err => console.error(err))
       ) : (
         apiMain.likeMovie({
           country: card.country ?? "текст",
@@ -293,53 +336,56 @@ function App() {
           description: card.description ?? "текст",
           image: `https://api.nomoreparties.co${card.image.url}`,
           trailer: card.trailerLink ?? "текст",
-          thumbnail: `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`,
-          movieId: card.id ?? "текст",
+          thumbnail: cardTthumbnail,
+          movieId: card.id,
           nameRU: card.nameRU ?? "текст",
           nameEN: card.NameEN ?? "текст",
           // owner: currentUser._id
         })
-      );
+        .then((newCard) => {
 
-    promise.then((newCard) => {
+          // setSavedMovies((state) => {
+          //   console.log(state);
+          //   state.map((c) => {
+          //     console.log(c);
+          //     return c._id === newCard._id ? newCard : c
+          //   })
+          //   // console.log(state);
+          // });
+          newCard.likes = currentUser._id;
+          setSavedMovies((prev) => [...prev, newCard]);
+          // setResultMovies(resultMovies);
+          localStorage.setItem(
+            "saved-movie-list",
+             JSON.stringify([
+               ...JSON.parse(localStorage.getItem('saved-movie-list')),
+               newCard
+            ])
+          );
+          // console.log(resultMovies);
+          // setResultMovies((state) => {
+          //   console.log(state);
+          //   state.map((c) => {
+          //     console.log(c.id);
+          //     console.log(newCard.movieId);
+          //     debugger;
+          //     return c.id === newCard.movieId ? newCard : c
+          //   })
+          // });
+          // console.log(resultMovies);
 
-      // setSavedMovies((state) => {
-      //   console.log(state);
-      //   state.map((c) => {
-      //     console.log(c);
-      //     return c._id === newCard._id ? newCard : c
-      //   })
-      //   // console.log(state);
-      // });
-      newCard.likes = currentUser._id;
-      setSavedMovies((prev) => [...prev, newCard]);
-      // setResultMovies(resultMovies);
-      localStorage.setItem(
-        "saved-movie-list",
-         JSON.stringify([
-           ...JSON.parse(localStorage.getItem('saved-movie-list')),
-           newCard
-        ])
+
+          // const LikedResultMovies = resultMovies.map((c) => {
+          //   return String(c.id) === newCard.movieId ? newCard : c
+          // });
+
+
+          // console.log(LikedResultMovies);
+          // setResultMovies(LikedResultMovies);
+          setResultMovies(resultMovies);
+        })
+        .catch(err => console.error(err))
       );
-      // console.log(resultMovies);
-      // setResultMovies((state) => {
-      //   console.log(state);
-      //   state.map((c) => {
-      //     console.log(c.id);
-      //     console.log(newCard.movieId);
-      //     debugger;
-      //     return c.id === newCard.movieId ? newCard : c
-      //   })
-      // });
-      // console.log(resultMovies);
-      const LikedResultMovies = resultMovies.map((c) => {
-        // debugger;
-        return String(c.id) === newCard.movieId ? newCard : c
-      });
-      console.log(LikedResultMovies);
-      setResultMovies(LikedResultMovies);
-    })
-    .catch(err => console.error(err))
   };
 
   function onSignOut() {
@@ -374,6 +420,9 @@ function App() {
             menuValue=""
             onMenuPopup={handleMenuPopupClick}
             movies={savedMovies}
+            filterStatus={isShortFilm}
+            setIsShortFilm ={setIsShortFilm}
+            handleFilter={handleFilter}
           />
           <ProtectedRoute
             exact path="/profile"
