@@ -1,21 +1,6 @@
 import React from 'react';
-import { CurrentUserContext } from '../../contexts/CurrentUserContext';
 
 function MoviesCard( card ) {
-  // const isLiked = card.like;
-  // const currentUser = React.useContext(CurrentUserContext);
-  // const isLiked = card.likes.some(i => i._id === currentUser._id);
-  // const isLiked = card.likes === currentUser._id ? true : false;
-  // const isLikedCard = JSON.parse(localStorage.getItem('saved-movie-list')).some(
-  //   (movie) => {
-      
-  //     const movieResult = movie.movieId || String(movie.id);
-  //     const cardResult = card.movieId || String(card.id);
-  //     debugger;
-  //     return movieResult === cardResult;
-  //   }
-  // ) ? true : false;
-
   const [isLiked, setIsLiked] = React.useState(
     JSON.parse(localStorage.getItem('saved-movie-list')).some(
         (movie) => {
@@ -27,10 +12,7 @@ function MoviesCard( card ) {
           false
         )
   );
-  // console.log(isLiked);
-  // debugger;
   const imageUrl = card.image.url ? `https://api.nomoreparties.co${card.image.url}` : card.image;
-
   const cardLikeButtonClassName = (
     `cards__like ${isLiked ? 'cards__like_active' : ''}`
   );

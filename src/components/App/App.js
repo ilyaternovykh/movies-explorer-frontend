@@ -23,7 +23,6 @@ function App() {
   const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(false);
-  // const [moviesData, setMoviesData] = React.useState([]);
   const [findedMovies, setFindedMovies] = React.useState([]);
   const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [resultMovies, setResultMovies] = React.useState([]);
@@ -75,48 +74,6 @@ function App() {
     }).catch(err => console.error(err))
   }, [currentUser]);
 
-  // React.useEffect(() => {
-    
-  //     apiMain.getAllData()
-  //     .then(data => {
-  //       console.log(data);
-  //     }).catch(err => console.error(err))
-    
-  // }, []);
-
-  // const tokenCheck = () => {
-  //   if (localStorage.getItem('token')){
-  //     const token = localStorage.getItem('token');
-  //     apiAuth.getContent(token).then((res) => {
-  //       if (res.email) {
-  //         // setUserData({
-  //         //   email: res.email
-  //         // });
-  //         setLoggedIn(true);
-  //         history.push(location.pathname);
-  //         // history.push('./movies');
-  //       } else {
-  //         history.push('/');
-  //       }
-  //     }).catch(err => console.error(err));
-  //   }
-  // }
-
-  // React.useEffect(() => {
-  //   tokenCheck();
-  // }, []);
-
-  // React.useEffect(() => {
-  //   if (loggedIn) {
-  //     apiMovies.getMovies()
-  //     .then(data => {
-  //       setMovies(data);
-  //     }).catch(err => console.error(err))
-  //   }
-  // }, [loggedIn]);
-
-
-
   const onGoBack = () => {
     history.goBack();
   };
@@ -143,7 +100,6 @@ function App() {
         if (data.token) {
           localStorage.setItem('token', data.token);
           setLoggedIn(true);
-          // setUserData({ email });
           setСurrentUser(data);
           history.push('/saved-movies');
         }
@@ -155,19 +111,11 @@ function App() {
     apiAuth.register({ password, email, name })
       .then(data => {
         if (data) {
-          // setUserData({
-          //   email: data.email
-          // });
-          // setСurrentUser(data);
-          // setLoggedIn(true);
-          // history.push('/saved-movies');
-          // setIsInfoTooltipOpen({status: true, type: true})
           handleLogin({ password, email, name });
         }
       })
       .catch((err) => {
         console.log(err)
-        // setIsInfoTooltipOpen({status: true, type: false})
       });
   }
 
@@ -186,40 +134,20 @@ function App() {
     const savedMoviesForLikes = savedMovies.map(movieId => movieId.movieId);
 
     if (!movieList) {
-      // debugger;
       apiMovies.getMovies()
         .then(data => {
-          // const movieListWithLikes = data.map(function(movie) {
-          //   const likeForMovie = savedMovies.some(function (movieId) {
-          //     return movieId === movie.id;
-          //   })
-
-          //   if (likeForMovie) {
-          //     movie.push()
-          //   }
-
-          //   }
-          // )
-          
           const movieListWithLikes = data.map(function(item) {
-            // console.log(item.id);
             if (savedMoviesForLikes.includes(String(item.id))) {
-              // debugger;
               item.likes = currentUser._id;
               return item;
-              // return item.set('likes', currentUser._id)
             } else {
-              // debugger;
               item.likes = ""
               return item;
-              // return item.set('likes', '')
             }
           })
           const findedMovieList = movieListWithLikes.filter(function(film) {
-            // debugger;
             return film.nameRU.toLowerCase().includes(movie.toLowerCase());
           })
-          // setMoviesData(data);
           setFindedMovies(findedMovieList);
           setFilteredMovies(filterMovies(findedMovieList));
           if (isShortFilm === true) {
@@ -231,23 +159,17 @@ function App() {
     }).catch(err => console.error(err))
     } else {
       const movieListWithLikes = movieList.map(function(item) {
-        // console.log(item.id);
         if (savedMoviesForLikes.includes(String(item.id))) {
-          // debugger;
           item.likes = currentUser._id;
           return item;
-          // return item.set('likes', currentUser._id)
         } else {
-          // debugger;
           item.likes = ""
           return item;
-          // return item.set('likes', '')
         }
       })
       
       
       const findedSavedMovieList = movieListWithLikes.filter(function(film) {
-        // debugger;
         return film.nameRU.toLowerCase().includes(movie.toLowerCase());
       })
       setFindedMovies(findedSavedMovieList);
@@ -262,7 +184,6 @@ function App() {
   }
 
   const handleFilter = () => {
-    // setIsShortFilm(!isShortFilm);
     if (resultMovies) {
       if (isShortFilm === false) {
         setResultMovies(filteredMovies);
@@ -274,39 +195,20 @@ function App() {
 
   const filterMovies = (movies) => {
     return movies.filter(function(film) {
-      // debugger;
       return film.duration <= 40;
     })
   }
 
   function handleCardLike(card, isLiked) {
-    // console.log(card);
-    // const isLiked = card.likes.some(i => i === currentUser._id);
-    // const isLiked = card.likes === currentUser._id ? true : false;
-    // const isLiked = JSON.parse(localStorage.getItem('saved-movie-list')).some(
-    //   (movie) => {
-    //     debugger;
-    //     const movieResult = movie.movieId || String(movie.id);
-    //     const cardResult = card.movieId || String(card.id);
-    //     debugger;
-
-    //     return movieResult === cardResult;
-    //   }
-    // ) ? true : false;
-    // console.log(savedMovies);
     const findDeleteMovie = () => {
       return savedMovies.find((c) => c.movieId === String(card.id));
     }
     const deleteMovie = findDeleteMovie();
-    // console.log(card.thumbnail);
     const cardTthumbnail = card.thumbnail ? card.thumbnail : `https://api.nomoreparties.co${card.image.formats.thumbnail.url}`;
-    // console.log(isLiked);
-    // debugger;
 
     isLiked ? (
         apiMain.dislikeMovie(deleteMovie._id)
         .then(() => {
-          // card.likes = "";
           setSavedMovies((prev) =>
             prev.filter((c) => c._id !== deleteMovie._id)
           )
@@ -320,10 +222,8 @@ function App() {
           );
 
           const dislikedResultMovies = resultMovies.map((c) => {
-            // debugger;
             return c.id === card.id ? card : c
           });
-          // console.log(dislikedResultMovies);
           setResultMovies(dislikedResultMovies);
         })
         .catch(err => console.error(err))
@@ -340,21 +240,10 @@ function App() {
           movieId: card.id,
           nameRU: card.nameRU ?? "текст",
           nameEN: card.NameEN ?? "текст",
-          // owner: currentUser._id
         })
         .then((newCard) => {
-
-          // setSavedMovies((state) => {
-          //   console.log(state);
-          //   state.map((c) => {
-          //     console.log(c);
-          //     return c._id === newCard._id ? newCard : c
-          //   })
-          //   // console.log(state);
-          // });
           newCard.likes = currentUser._id;
           setSavedMovies((prev) => [...prev, newCard]);
-          // setResultMovies(resultMovies);
           localStorage.setItem(
             "saved-movie-list",
              JSON.stringify([
@@ -362,26 +251,6 @@ function App() {
                newCard
             ])
           );
-          // console.log(resultMovies);
-          // setResultMovies((state) => {
-          //   console.log(state);
-          //   state.map((c) => {
-          //     console.log(c.id);
-          //     console.log(newCard.movieId);
-          //     debugger;
-          //     return c.id === newCard.movieId ? newCard : c
-          //   })
-          // });
-          // console.log(resultMovies);
-
-
-          // const LikedResultMovies = resultMovies.map((c) => {
-          //   return String(c.id) === newCard.movieId ? newCard : c
-          // });
-
-
-          // console.log(LikedResultMovies);
-          // setResultMovies(LikedResultMovies);
           setResultMovies(resultMovies);
         })
         .catch(err => console.error(err))
