@@ -257,6 +257,26 @@ function App() {
       );
   };
 
+  function handleCardDelete(card) {
+    apiMain.dislikeMovie(card._id)
+      .then(() => {
+        setSavedMovies((prev) =>
+          prev.filter((c) => c._id !== card._id)
+        )
+        localStorage.setItem(
+          'saved-movie-list',
+          JSON.stringify(
+            JSON.parse(localStorage.getItem('saved-movie-list')).filter(
+              (movie) => movie._id !== card._id
+            )
+          )
+        );
+        
+        setResultMovies(resultMovies);
+      })
+      .catch(err => console.error(err))
+  }
+
   function onSignOut() {
     localStorage.removeItem('token');
     setLoggedIn(false);
@@ -292,6 +312,7 @@ function App() {
             filterStatus={isShortFilm}
             setIsShortFilm ={setIsShortFilm}
             handleFilter={handleFilter}
+            onCardDelete={handleCardDelete}
           />
           <ProtectedRoute
             exact path="/profile"

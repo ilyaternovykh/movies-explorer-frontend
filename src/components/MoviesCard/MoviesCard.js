@@ -36,6 +36,10 @@ function MoviesCard( card ) {
     card.onCardLike(card, isLiked);
   };
 
+  const handleDeleteClick = () => {
+    card.onCardDelete(card);
+  };
+
   return (
     <li className="cards__item">
       {card.location === "/movies" ? (
@@ -54,7 +58,7 @@ function MoviesCard( card ) {
         <div className="cards__description cards__description_type_saved">
           <div className="cards__info cards__info-saved">
             <h2 className="cards__title">{card.nameRU}</h2>
-            <button className="cards__delete-button "></button>
+            <button className="cards__delete-button" onClick={handleDeleteClick}></button>
           </div>
           <p className="cards__duration">{transformDuration(card.duration)}</p>
         </div>

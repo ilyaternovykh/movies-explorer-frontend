@@ -1,15 +1,10 @@
 import { useEffect, useState } from "react";
 import { useLocation } from "react-router-dom";
-// import { cardsData } from "../../utils/cardsData";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies, onCardLike }) {
+function MoviesCardList({ movies, onCardLike, onCardDelete }) {
   const location = useLocation().pathname;
-  // const savedCards = cardsData.filter((card) => {
-  //   return card.like === true;
-  // })
   const [widthWindow, setWidthWindow] = useState(document.documentElement.clientWidth);
-  // const [gridCount, setGridCount] = useState(0);
   const [gridSize, setGridSize] = useState(0);
   const [buttonSize, setButtonSize] = useState(0);
   
@@ -89,7 +84,7 @@ function MoviesCardList({ movies, onCardLike }) {
             </>
           ) : (
             <ul className="cards cards_type_saved">
-              {movies.map((props) => (<MoviesCard key={props._id} {...props} location={location} />))}
+              {movies.map((props) => (<MoviesCard key={props._id} {...props} location={location} onCardDelete={onCardDelete}/>))}
             </ul>
           )
         )}

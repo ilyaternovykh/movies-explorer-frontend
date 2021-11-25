@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, filterStatus, setIsShortFilm }) {
+function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, filterStatus, setIsShortFilm, onCardDelete }) {
 
 
   return(
@@ -21,6 +21,7 @@ function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, f
       />
       <MoviesCardList 
         movies={movies}
+        onCardDelete={onCardDelete}
       />
       </main>
       <Footer />
