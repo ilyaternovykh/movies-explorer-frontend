@@ -1,9 +1,10 @@
 import Footer from "../Footer/Footer";
 import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
+import Preloader from "../Preloader/Preloader"
 import SearchForm from "../SearchForm/SearchForm";
 
-function Movies({ loggedIn, menuValue, onMenuPopup, movies, handleSearch, handleFilter, filterStatus, setIsShortFilm }) {
+function Movies({ loggedIn, menuValue, onMenuPopup, movies, handleSearch, handleFilter, filterStatus, setIsShortFilm, isLoading, onCardLike }) {
 
 
   return(
@@ -20,9 +21,15 @@ function Movies({ loggedIn, menuValue, onMenuPopup, movies, handleSearch, handle
           filterStatus={filterStatus}
           setIsShortFilm ={setIsShortFilm}
         />
-        <MoviesCardList
-          movies={movies}
-        />
+        {isLoading ? 
+          <Preloader />
+        : 
+          <MoviesCardList
+            movies={movies}
+            onCardLike={onCardLike}
+          />
+        }
+        
       </main>
       <Footer />
     </>

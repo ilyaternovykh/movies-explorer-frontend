@@ -4,18 +4,18 @@ class Api {
     this._headers = options.headers;
   }
 
-  // getInitialCards() {
-  //   const token = localStorage.getItem('token');
+  getInitialMovies() {
+    const token = localStorage.getItem('token');
 
-  //   return fetch(`${this._baseUrl}/cards`, {
-  //     method: 'GET',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then(this._checkResponse);
-  // }
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'GET',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(this._checkResponse);
+  }
 
   getUserInfo() {
     const token = localStorage.getItem('token');
@@ -31,7 +31,7 @@ class Api {
   }
 
   getAllData() {
-    return Promise.all([this.getUserInfo()]);
+    return Promise.all([this.getUserInfo(), this.getInitialMovies()]);
   }
 
   editUserInfo(userData) {
@@ -48,19 +48,18 @@ class Api {
     .then(this._checkResponse);
   }
 
-  // addNewCard(cardData) {
-  //   const token = localStorage.getItem('token');
-
-  //   return fetch(`${this._baseUrl}/cards`, {
-  //     method: 'POST',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(cardData)
-  //   })
-  //   .then(this._checkResponse);
-  // }
+  likeMovie(cardData) {
+    const token = localStorage.getItem('token');
+    return fetch(`${this._baseUrl}/movies`, {
+      method: 'POST',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+      body: JSON.stringify(cardData)
+    })
+    .then(this._checkResponse);
+  }
 
   // removeCard(id) {
   //   const token = localStorage.getItem('token');
@@ -88,18 +87,18 @@ class Api {
   //   .then(this._checkResponse);
   // }
 
-  // dislikeLikeCard(id) {
-  //   const token = localStorage.getItem('token');
+  dislikeMovie(id) {
+    const token = localStorage.getItem('token');
 
-  //   return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then(this._checkResponse);
-  // }
+    return fetch(`${this._baseUrl}/movies/${id}`, {
+      method: 'DELETE',
+      headers: {
+        'Authorization': `Bearer ${token}`,
+        'Content-Type': 'application/json',
+      },
+    })
+    .then(this._checkResponse);
+  }
 
   // editUserAvatar(userAvatar) {
   //   const token = localStorage.getItem('token');

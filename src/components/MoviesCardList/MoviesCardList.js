@@ -3,12 +3,11 @@ import { useLocation } from "react-router-dom";
 // import { cardsData } from "../../utils/cardsData";
 import MoviesCard from "../MoviesCard/MoviesCard";
 
-function MoviesCardList({ movies }) {
+function MoviesCardList({ movies, onCardLike }) {
   const location = useLocation().pathname;
   // const savedCards = cardsData.filter((card) => {
   //   return card.like === true;
   // })
-
   const [widthWindow, setWidthWindow] = useState(document.documentElement.clientWidth);
   // const [gridCount, setGridCount] = useState(0);
   const [gridSize, setGridSize] = useState(0);
@@ -83,14 +82,14 @@ function MoviesCardList({ movies }) {
             <>
             <ul className="cards">
               {movies.slice(0, gridSize).map((props) => (
-              <MoviesCard key={props.id} {...props} location={location} />
+              <MoviesCard key={props.id ? props.id : props.movieId} {...props} location={location} onCardLike={onCardLike} />
               ))}
             </ul>
             <button className={cardsGridButtonClassName} onClick={handleButtonClick}>Ещё</button>
             </>
           ) : (
             <ul className="cards cards_type_saved">
-              {movies.map((props) => (<MoviesCard key={props.id} {...props} location={location} />))}
+              {movies.map((props) => (<MoviesCard key={props._id} {...props} location={location} />))}
             </ul>
           )
         )}
