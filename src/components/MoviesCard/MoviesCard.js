@@ -4,7 +4,6 @@ function MoviesCard( card ) {
   const [isLiked, setIsLiked] = React.useState(
     JSON.parse(localStorage.getItem('saved-movie-list')).some(
         (movie) => {
-          // debugger;
           return movie.movieId === String(card.id)
         }) ? (
           true

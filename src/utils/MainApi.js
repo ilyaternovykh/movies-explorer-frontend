@@ -61,32 +61,6 @@ class Api {
     .then(this._checkResponse);
   }
 
-  // removeCard(id) {
-  //   const token = localStorage.getItem('token');
-
-  //   return fetch(`${this._baseUrl}/cards/${id}`, {
-  //     method: 'DELETE',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then(this._checkResponse);
-  // }
-
-  // likeCard(id) {
-  //   const token = localStorage.getItem('token');
-
-  //   return fetch(`${this._baseUrl}/cards/${id}/likes`, {
-  //     method: 'PUT',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //   })
-  //   .then(this._checkResponse);
-  // }
-
   dislikeMovie(id) {
     const token = localStorage.getItem('token');
 
@@ -99,20 +73,6 @@ class Api {
     })
     .then(this._checkResponse);
   }
-
-  // editUserAvatar(userAvatar) {
-  //   const token = localStorage.getItem('token');
-
-  //   return fetch(`${this._baseUrl}/users/me/avatar`, {
-  //     method: 'PATCH',
-  //     headers: {
-  //       'Authorization': `Bearer ${token}`,
-  //       'Content-Type': 'application/json',
-  //     },
-  //     body: JSON.stringify(userAvatar)
-  //   })
-  //   .then(this._checkResponse);
-  // }
 
   _checkResponse(res) {
     if (res.ok) {

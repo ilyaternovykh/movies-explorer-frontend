@@ -23,27 +23,14 @@ function App() {
   const [isFormButtonEnable, setIsFormButtonEnable] = React.useState(false);
   const [currentUser, setСurrentUser] = React.useState({});
   const [isLoading, setIsLoading] = React.useState(false);
-  // const [findedMovies, setFindedMovies] = React.useState([]);
-  // const [filteredMovies, setFilteredMovies] = React.useState([]);
   const [resultMovies, setResultMovies] = React.useState([]);
   const [isShortFilm, setIsShortFilm] = React.useState(false);
   const [savedLocalMovies, setSavedLocalMovies] = React.useState([]);
-  // const [findedSavedMovies, setFindedSavedMovies] = React.useState([]);
-  // const [filteredSavedMovies, setFilteredSavedMovies] = React.useState([]);
   const [isShortSavedFilm, setIsShortSavedFilm] = React.useState(false);
-  // const [savedMoviesForSearch, setSavedMoviesForSearch] = React.useState(
-  //   JSON.parse(localStorage.getItem('saved-movie-list'))
-  // );
 
 
   const history = useHistory();
   const location = useLocation();
-
-  // React.useEffect(() => {
-  //   debugger;
-  //   setSavedMoviesForSearch(savedLocalMovies);
-  //   debugger;
-  // }, [savedLocalMovies])
 
   React.useEffect(() => {
     const token = localStorage.getItem('token');
@@ -148,8 +135,7 @@ function App() {
           const findedMovieList = data.filter(function(film) {
             return film.nameRU.toLowerCase().includes(movie.toLowerCase());
           })
-          // setFindedMovies(findedMovieList);
-          // setFilteredMovies(filterMovies(findedMovieList));
+
           if (isShortFilm === true) {
             setResultMovies(filterMovies(findedMovieList));
           } else {
@@ -162,9 +148,6 @@ function App() {
         return film.nameRU.toLowerCase().includes(movie.toLowerCase());
       })
 
-      // setFindedMovies(findedLocalMovieList);
-      // setFilteredMovies(filterMovies(findedLocalMovieList));
-
       if (isShortFilm === true) {
         setResultMovies(filterMovies(findedLocalMovieList));
       } else {
@@ -173,52 +156,6 @@ function App() {
     }
     setIsLoading(false);
   }
-
-  // const handleSavedSearch = ({movie}) => {
-  //   const savedMovieList = JSON.parse(localStorage.getItem('saved-movie-list'));
-  //   setSavedMoviesForSearch(savedMovieList);
-  //   // debugger;
-
-  //   if (savedMovieList) {
-  //     const findedSavedMovieList = savedMovieList.filter(function(film) {
-  //       return film.nameRU.toLowerCase().includes(movie.toLowerCase());
-  //     })
-
-  //     setFindedSavedMovies(findedSavedMovieList);
-  //     setFilteredSavedMovies(filterMovies(findedSavedMovieList));
-  //     setSavedMoviesForSearch(findedSavedMovieList);
-
-  //     if (isShortSavedFilm === true) {
-  //       setSavedLocalMovies(filterMovies(findedSavedMovieList));
-  //       // debugger;
-  //     } else {
-  //       setSavedLocalMovies(findedSavedMovieList);
-  //       // debugger;
-  //     }
-  //   }
-  // }
-
-  // const handleFilter = () => {
-  //   if (resultMovies) {
-  //     if (isShortFilm === false) {
-  //       setResultMovies(filteredMovies);
-  //     } else {
-  //       setResultMovies(findedMovies);
-  //     }
-  //   }
-  // }
-
-  // const handleSavedFilter = () => {
-  //   if (savedLocalMovies) {
-  //     if (isShortSavedFilm === false) {
-  //       setSavedLocalMovies(filterMovies(savedMoviesForSearch));
-  //       debugger;
-  //     } else {
-  //       setSavedLocalMovies(findedSavedMovies);
-  //       debugger;
-  //     }
-  //   }
-  // }
 
   const filteredSavedMovies = isShortSavedFilm ? savedLocalMovies.filter((film) => film.duration <= 40) : savedLocalMovies;
   const filteredResultMovies = isShortFilm ? resultMovies.filter((film) => film.duration <= 40) : resultMovies;
@@ -282,7 +219,6 @@ function App() {
             ])
           );
           setResultMovies(resultMovies);
-          // setSavedMoviesForSearch(savedLocalMovies);
         })
         .catch(err => console.error(err))
       );
@@ -302,9 +238,6 @@ function App() {
             )
           )
         );
-        
-        // setSavedLocalMovies(JSON.parse(localStorage.getItem('saved-movie-list')));
-        // setSavedMoviesForSearch(JSON.parse(localStorage.getItem('saved-movie-list')));
       })
       .catch(err => console.error(err))
   }
@@ -328,7 +261,6 @@ function App() {
             menuValue=""
             onMenuPopup={handleMenuPopupClick}
             handleSearch={handleSearch}
-            // handleFilter={handleFilter}
             filterStatus={isShortFilm}
             setIsShortFilm ={setIsShortFilm}
             isLoading={isLoading}
@@ -343,9 +275,7 @@ function App() {
             movies={filteredSavedMovies}
             filterStatus={isShortSavedFilm}
             setIsShortFilm ={setIsShortSavedFilm}
-            // handleFilter={handleSavedFilter}
             onCardDelete={handleCardDelete}
-            // handleSearch={handleSavedSearch}
           />
           <ProtectedRoute
             exact path="/profile"

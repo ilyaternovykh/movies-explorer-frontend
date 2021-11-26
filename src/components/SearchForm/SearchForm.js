@@ -10,7 +10,6 @@ function SearchForm({ handleSearch, handleFilter, filterStatus, setIsShortFilm }
 
   const handleChange = (e) => {
     const {name, value} = e.target;
-    // debugger;
     setData({
       ...data,
       [name]: value
