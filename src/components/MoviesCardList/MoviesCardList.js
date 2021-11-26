@@ -7,6 +7,7 @@ function MoviesCardList({ movies, onCardLike, onCardDelete }) {
   const [widthWindow, setWidthWindow] = useState(document.documentElement.clientWidth);
   const [gridSize, setGridSize] = useState(0);
   const [buttonSize, setButtonSize] = useState(0);
+  // debugger;
   
 
   function throttle(func, delay) {

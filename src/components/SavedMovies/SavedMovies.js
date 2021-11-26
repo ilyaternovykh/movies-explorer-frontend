@@ -3,7 +3,7 @@ import Header from "../Header/Header";
 import MoviesCardList from "../MoviesCardList/MoviesCardList";
 import SearchForm from "../SearchForm/SearchForm";
 
-function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, filterStatus, setIsShortFilm, onCardDelete }) {
+function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, filterStatus, setIsShortFilm, onCardDelete, handleSearch }) {
 
 
   return(
@@ -15,6 +15,7 @@ function SavedMovies({ loggedIn, menuValue, onMenuPopup, movies, handleFilter, f
       />
       <main className="movies page-padding-movies">
       <SearchForm
+        handleSearch={handleSearch}
         handleFilter={handleFilter}
         filterStatus={filterStatus}
         setIsShortFilm ={setIsShortFilm}

@@ -1,18 +1,13 @@
 import React from 'react';
 
-function FilterCheckbox({mobileStatus, handleFilter, filterStatus, setIsShortFilm}) {
-  // const [isShortFilm, setIsShortFilm] = React.useState(false);
+function FilterCheckbox({mobileStatus, filterStatus, setIsShortFilm}) {
 
   const checkboxClassName = (
     `filter-checkbox ${mobileStatus ? 'filter-checkbox__mobile' : 'filter-checkbox__pc'}`
   );
 
   const handleChange = (e) => {
-    
     setIsShortFilm(!filterStatus);
-    handleFilter();
-    // debugger;
-    // console.log(filterStatus);
   }
 
   return (
