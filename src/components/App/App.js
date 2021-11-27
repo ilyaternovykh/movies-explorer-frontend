@@ -61,15 +61,17 @@ function App() {
   }, [loggedIn]);
 
   React.useEffect(() => {
-    apiMain.getInitialMovies()
-    .then(data => {
-      const userSavedMovies = data.filter((movie) => {
-        return movie.owner === currentUser._id;
-      });
-      setSavedLocalMovies(userSavedMovies);
-      localStorage.setItem("saved-movie-list", JSON.stringify(userSavedMovies));
-    }).catch(err => console.error(err))
-  }, [currentUser]);
+    if (loggedIn) {
+      apiMain.getInitialMovies()
+      .then(data => {
+        const userSavedMovies = data.filter((movie) => {
+          return movie.owner === currentUser._id;
+        });
+        setSavedLocalMovies(userSavedMovies);
+        localStorage.setItem("saved-movie-list", JSON.stringify(userSavedMovies));
+      }).catch(err => console.error(err))
+    }
+  }, [currentUser, loggedIn]);
 
   const onGoBack = () => {
     history.goBack();
@@ -98,7 +100,7 @@ function App() {
           localStorage.setItem('token', data.token);
           setLoggedIn(true);
           setСurrentUser(data);
-          history.push('/saved-movies');
+          history.push('/movies');
         }
       })
       .catch(err => console.log(err));
@@ -244,6 +246,8 @@ function App() {
 
   function onSignOut() {
     localStorage.removeItem('token');
+    localStorage.removeItem('saved-movie-list');
+    localStorage.removeItem('movie-list');
     setLoggedIn(false);
     history.push('/');
   }
