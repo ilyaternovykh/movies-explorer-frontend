@@ -1,11 +1,14 @@
+import { forwardRef } from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 
-function AboutProject() {
-
+const AboutProject = forwardRef((props, ref ) => {
+  // const props = props;
 
   return(
-    <section id='about-project' className="about-project page-padding">
-      <SectionTitle 
+    <section id='about-project' className="about-project page-padding" ref={ref}>
+      {/* {props.children} */}
+      <SectionTitle
+        {...props}
         title={'О проекте'}
       />
       <ul className="table">
@@ -34,6 +37,8 @@ function AboutProject() {
       </ul>
     </section>
   );
-}
+});
+
+AboutProject.displayName = "AboutProject";
 
 export default AboutProject;

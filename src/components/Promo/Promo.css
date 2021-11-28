@@ -45,7 +45,7 @@
   width: 210px;
 }
 
-.promo__button {
+/* .promo__button {
   width: 129px;
   height: 36px;
   box-sizing: border-box;
@@ -70,7 +70,7 @@
 
 .promo__button:hover {
   opacity: 0.8;
-}
+} */
 
 @media screen and (min-width: 768px) {
   .promo__main-illustration {
@@ -93,10 +93,10 @@
     margin-top: 22px;
   }
 
-  .promo__button {
+  /* .promo__button {
     margin-top: 92px;
     margin-bottom: 76px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1024px) {
@@ -128,10 +128,10 @@
     max-width: 310px;
   }
 
-  .promo__button {
+  /* .promo__button {
     margin-top: 146px;
     margin-bottom: 75px;
-  }
+  } */
 }
 
 @media screen and (min-width: 1280px) {
