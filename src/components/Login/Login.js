@@ -1,27 +1,24 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
+import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
 
-function Login({ button, handleLogin }) {
-  const [data, setData] = React.useState({
+function Login({ button, handleLogin, reqStatus, setReqStatus }) {
+  const {values: userData, errors, handleChange, isValid } = useFormWithValidation({
     email: '',
     password: '',
   });
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-
-    setData({
-      ...data,
-      [name]: value
-    })
-  }
-
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    const { email, password } = data;
-    handleLogin({ email, password });
+    handleLogin(userData);
   }
+
+  useEffect(() => {
+    setReqStatus(false);
+  }, [setReqStatus, userData]);
+  
+  const submitButtonClassName = (`form__submit form__submit_login ${isValid ? '' : 'form__submit_type_disabled'}`);
 
   return (
     <div className="register profile-padding">
@@ -34,11 +31,31 @@ function Login({ button, handleLogin }) {
           <form className="form" onSubmit={handleSubmit}>
             <div className="form__input-group">
               <p className="form__input-title">E-mail</p>
-              <input className="form__input" id="email" name="email" type="email" value={data.email} onChange={handleChange} />
+              <input
+                className="form__input"
+                id="email"
+                name="email"
+                type="email"
+                value={userData.email}
+                onChange={handleChange}
+                required
+              />
+              { errors.email && (<span className="form__error">{errors.email}</span>)}
               <p className="form__input-title">Пароль</p>
-              <input className="form__input" id="password" name="password" type="password" value={data.password} onChange={handleChange} />
+              <input
+                className="form__input"
+                id="password"
+                name="password"
+                type="password"
+                value={userData.password}
+                onChange={handleChange}
+                required
+                minLength="8"
+              />
+              { errors.password && (<span className="form__error">{errors.password}</span>)}
+              { reqStatus && (<span className="form__error">Что-то пошло не так...</span>)}
             </div>
-            <button className="form__submit form__submit_login">{button}</button>
+            <button className={submitButtonClassName} disabled={!isValid}>{button}</button>
           </form>
         </div>
         <div className="register__question-group">

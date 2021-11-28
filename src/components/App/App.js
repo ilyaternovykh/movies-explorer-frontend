@@ -27,6 +27,7 @@ function App() {
   const [isShortFilm, setIsShortFilm] = React.useState(false);
   const [savedLocalMovies, setSavedLocalMovies] = React.useState([]);
   const [isShortSavedFilm, setIsShortSavedFilm] = React.useState(false);
+  const [reqStatus, setReqStatus] = React.useState(false);
 
 
   const history = useHistory();
@@ -103,7 +104,10 @@ function App() {
           history.push('/movies');
         }
       })
-      .catch(err => console.log(err));
+      .catch((err) => {
+        setReqStatus(true);
+        console.log(err);
+      });
   }
   
   const handleRegister = ({ password, email, name }) => {
@@ -313,6 +317,8 @@ function App() {
             <Login
               button="Войти"
               handleLogin={handleLogin}
+              reqStatus={reqStatus}
+              setReqStatus={setReqStatus}
             />
           </Route>
           <Route path="*">
