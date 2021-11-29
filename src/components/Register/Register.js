@@ -74,7 +74,7 @@ function Register({ button, handleRegister, reqStatus, setReqStatus }) {
               { reqStatus && (<span className="form__error">Что-то пошло не так...</span>)}
               {/* <span className="form__error">Что-то пошло не так...</span> */}
             </div>
-            <button className={submitButtonClassName}>{button}</button>
+            <button className={submitButtonClassName} disabled={!isValid}>{button}</button>
           </form>
         </div>
         <div className="register__question-group">

@@ -129,7 +129,10 @@ function App() {
       setСurrentUser(data);
       closeFormButton();
     })
-    .catch(err => console.error(err))
+    .catch((err) => {
+      setReqStatus(true);
+      console.log(err);
+    });
   }
 
   const handleSearch = ({movie}) => {
@@ -298,6 +301,9 @@ function App() {
             onMenuPopup={handleMenuPopupClick}
             onSignOut={onSignOut}
             onUpdateUser={handleUpdateUser}
+            currentUser={currentUser}
+            reqStatus={reqStatus}
+            setReqStatus={setReqStatus}
           />
           <Route exact path="/">
             <Header 
