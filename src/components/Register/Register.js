@@ -1,32 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
+import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
 
-function Register({ button, handleRegister}) {
-  const [data, setData] = React.useState({
+
+function Register({ button, handleRegister, reqStatus, setReqStatus }) {
+  const {values: userData, errors, handleChange, isValid } = useFormWithValidation({
     name: '',
     email: '',
     password: ''
   });
 
-  const handleChange = (e) => {
-    const {name, value} = e.target;
-
-    setData({
-      ...data,
-      [name]: value
-    })
-  }
-
   function handleSubmit(e) {
     e.preventDefault();
-    const { password, email, name } = data;
     
-    handleRegister({
-      email,
-      password,
-      name
-    });
+    handleRegister(userData);
   }
+
+  useEffect(() => {
+    setReqStatus(false);
+  }, [setReqStatus, userData]);
+
+  const submitButtonClassName = (`form__submit ${isValid ? '' : 'form__submit_type_disabled'}`);
 
   return (
     <div className="register profile-padding">
@@ -39,14 +33,46 @@ function Register({ button, handleRegister}) {
           <form className="form" onSubmit={handleSubmit}>
             <div className="form__input-group">
               <p className="form__input-title">Имя</p>
-              <input className="form__input" id="name" name="name" type="text" value={data.name} onChange={handleChange} />
+              <input
+                className="form__input"
+                id="name"
+                name="name"
+                type="text"
+                value={userData.name}
+                onChange={handleChange}
+                required
+                minLength="2"
+                maxLength="30"
+              />
+              { errors.name && (<span className="form__error">{errors.name}</span>)}
               <p className="form__input-title">E-mail</p>
-              <input className="form__input" id="email" name="email" type="email" value={data.email} onChange={handleChange} />
+              <input
+                className="form__input"
+                id="email"
+                name="email"
+                type="email"
+                value={userData.email}
+                onChange={handleChange}
+                required
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
+              />
+              { errors.email && (<span className="form__error">{errors.email}</span>)}
               <p className="form__input-title">Пароль</p>
-              <input className="form__input" id="password" name="password" type="password" value={data.password} onChange={handleChange} />
-              <span className="form__error">Что-то пошло не так...</span>
+              <input
+                className="form__input"
+                id="password"
+                name="password"
+                type="password"
+                value={userData.password}
+                onChange={handleChange}
+                required
+                minLength="8"
+              />
+              { errors.password && (<span className="form__error">{errors.password}</span>)}
+              { reqStatus && (<span className="form__error">Что-то пошло не так...</span>)}
+              {/* <span className="form__error">Что-то пошло не так...</span> */}
             </div>
-            <button className="form__submit">{button}</button>
+            <button className={submitButtonClassName}>{button}</button>
           </form>
         </div>
         <div className="register__question-group">

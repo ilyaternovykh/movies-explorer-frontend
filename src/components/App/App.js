@@ -118,7 +118,8 @@ function App() {
         }
       })
       .catch((err) => {
-        console.log(err)
+        setReqStatus(true);
+        console.log(err);
       });
   }
 
@@ -311,6 +312,8 @@ function App() {
             <Register 
               button="Зарегистриоваться"
               handleRegister={handleRegister}
+              reqStatus={reqStatus}
+              setReqStatus={setReqStatus}
             />
           </Route>
           <Route path="/signin">

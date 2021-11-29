@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { Link } from "react-router-dom";
 import useFormWithValidation from '../useFormWithValidation/useFormWithValidation';
 
+
 function Login({ button, handleLogin, reqStatus, setReqStatus }) {
   const {values: userData, errors, handleChange, isValid } = useFormWithValidation({
     email: '',
@@ -39,6 +40,7 @@ function Login({ button, handleLogin, reqStatus, setReqStatus }) {
                 value={userData.email}
                 onChange={handleChange}
                 required
+                pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
               />
               { errors.email && (<span className="form__error">{errors.email}</span>)}
               <p className="form__input-title">Пароль</p>
