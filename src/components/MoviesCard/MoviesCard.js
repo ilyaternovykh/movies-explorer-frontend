@@ -43,7 +43,13 @@ function MoviesCard( card ) {
     <li className="cards__item">
       {card.location === "/movies" ? (
         <>
+        <a
+          href={card.trailerLink ? card.trailerLink : "https://www.youtube.com"}
+          target="_blank"
+          rel="noreferrer"
+        >
         <img className="cards__image" src={imageUrl} alt={card.nameRu} />
+        </a>
         <div className="cards__description">
           <div className="cards__info">
             <h2 className="cards__title">{card.nameRU}</h2>
@@ -53,7 +59,13 @@ function MoviesCard( card ) {
         </>
         ) : (
         <>
+        <a
+          href={card.trailer ? card.trailer : "https://www.youtube.com"}
+          target="_blank"
+          rel="noreferrer"
+        >
         <img className="cards__image" src={card.image} alt={card.nameRu} />
+        </a>
         <div className="cards__description cards__description_type_saved">
           <div className="cards__info cards__info-saved">
             <h2 className="cards__title">{card.nameRU}</h2>
