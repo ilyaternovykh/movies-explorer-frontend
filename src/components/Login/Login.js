@@ -26,7 +26,9 @@ function Login({ button, handleLogin, reqStatus, setReqStatus }) {
       <div className="register__content">
         <div className="register__form-group">
           <div className="register__title-group">
-            <div className="register__logo"></div>
+            <Link to='/' className="register__logo-link">
+              <div className="register__logo"></div>
+            </Link>
             <h2 className="register__title">Рады видеть!</h2>
           </div>
           <form className="form" onSubmit={handleSubmit}>
