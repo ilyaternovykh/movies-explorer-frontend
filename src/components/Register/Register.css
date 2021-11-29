@@ -27,10 +27,6 @@
   width: 100%;
 }
 
-.register__question-group {
-  /* flex-grow: 1; */
-}
-
 .register__title-group {
   display: flex;
   flex-direction: column;
