@@ -16,7 +16,9 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
   }
 
   useEffect(() => {
-    setReqStatus(false);
+    setReqStatus({
+      visible: false
+    });
   }, [setReqStatus, userData]);
 
   useEffect(() => {
@@ -79,11 +81,17 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
               { errors.email && (<span className="form__error">{errors.email}</span>)}
             </div>
             <div className={`form-profile__submit-group ${isOpen ? 'form-profile__submit-group_enable' : ''}`}>
-              { reqStatus && (<div className="form__error_profile">При обновлении профиля произошла ошибка</div>)}
+              { reqStatus.visible && 
+                (reqStatus.status ?
+                    (<div className="form__error_profile">Данные успешно отправлены</div>)
+                  :
+                    (<div className="form__error_profile">При обновлении профиля произошла ошибка</div>)
+                )
+              }
               <button 
-                className={`form__submit form-profile__submit ${reqStatus ? '' : 'form-profile__submit_enable'} ${isValid && !compareUserData ? '' : 'form__submit_type_disabled'}`}
-                onClick={onClose}
-                // disabled={!isValid}
+                className={`form__submit form-profile__submit ${reqStatus.status ? '' : 'form-profile__submit_enable'} ${isValid && !compareUserData ? '' : 'form__submit_type_disabled'}`}
+                // onClick={onClose}
+                disabled={compareUserData}
               >
                 {button}
               </button>

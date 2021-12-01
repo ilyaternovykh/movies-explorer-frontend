@@ -11,6 +11,7 @@ import PageNotFound from '../PageNotFound/PageNotFound';
 import Register from '../Register/Register';
 import Login from '../Login/Login';
 import Profile from '../Profile/Profile';
+import InfoTooltip from '../InfoTooltip/InfoTooltip';
 import ProtectedRoute from '../ProtectedRoute/ProtectedRoute';
 import * as apiAuth from '../../utils/AuthApi';
 import apiMain from '../../utils/MainApi';
@@ -27,7 +28,12 @@ function App() {
   const [isShortFilm, setIsShortFilm] = React.useState(false);
   const [savedLocalMovies, setSavedLocalMovies] = React.useState([]);
   const [isShortSavedFilm, setIsShortSavedFilm] = React.useState(false);
-  const [reqStatus, setReqStatus] = React.useState(false);
+  const [isInfoTooltipOpen, setIsInfoTooltipOpen] = React.useState(false);
+  const [reqStatus, setReqStatus] = React.useState({
+    visible: false,
+    status: false,
+    visibleButton: false
+  });
 
 
   const history = useHistory();
@@ -80,6 +86,7 @@ function App() {
 
   const closeAllPopups = () => {
     setIsMenuPopupOpen(false);
+    setIsInfoTooltipOpen(false);
   };
 
   const handleMenuPopupClick = () => {
@@ -107,6 +114,7 @@ function App() {
       .catch((err) => {
         setReqStatus(true);
         console.log(err);
+        debugger;
       });
   }
   
@@ -127,10 +135,18 @@ function App() {
     apiMain.editUserInfo(userInfo)
     .then(data => {
       setСurrentUser(data);
+      setIsInfoTooltipOpen(true);
+      // setReqStatus({
+      //   visible: true,
+      //   status: true
+      // });
       closeFormButton();
     })
     .catch((err) => {
-      setReqStatus(true);
+      setReqStatus({
+        visible: true,
+        status: false
+      });
       console.log(err);
     });
   }
@@ -338,6 +354,10 @@ function App() {
         </Switch>
         <MenuPopup
           isOpen={isMenuPopupOpen} 
+          onClose={closeAllPopups}
+        />
+        <InfoTooltip
+          isOpen={isInfoTooltipOpen}
           onClose={closeAllPopups}
         />
         </div>
