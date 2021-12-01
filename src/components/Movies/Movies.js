@@ -5,7 +5,7 @@ import Preloader from "../Preloader/Preloader"
 import SearchForm from "../SearchForm/SearchForm";
 
 function Movies({ loggedIn, menuValue, onMenuPopup, movies, handleSearch, handleFilter, filterStatus, setIsShortFilm, isLoading, onCardLike }) {
-
+  // debugger;
 
   return(
     <>
@@ -20,6 +20,7 @@ function Movies({ loggedIn, menuValue, onMenuPopup, movies, handleSearch, handle
           handleFilter={handleFilter}
           filterStatus={filterStatus}
           setIsShortFilm ={setIsShortFilm}
+          isLoading={isLoading}
         />
         {isLoading ? 
           <Preloader />

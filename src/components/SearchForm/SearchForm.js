@@ -3,7 +3,7 @@ import SearchImage from "../../images/search-form-image.svg"
 import SearchImageButton from "../../images/search-form-button.svg"
 import FilterCheckbox from "../FilterCheckbox/FilterCheckbox";
 
-function SearchForm({ handleSearch, handleFilter, filterStatus, setIsShortFilm }) {
+function SearchForm({ handleSearch, handleFilter, filterStatus, setIsShortFilm, isLoading }) {
   const [data, setData] = React.useState({
     movie: '',
   });
@@ -32,7 +32,7 @@ function SearchForm({ handleSearch, handleFilter, filterStatus, setIsShortFilm }
             <input  type="text" id="search-input" name="movie" placeholder="Фильм" className="search-form__input" value={data.movie} onChange={handleChange} />
           </div>
           <div className="search-form__buttons-group">
-            <button className="search-form__submit">
+            <button className="search-form__submit" disabled={isLoading}>
               <img className="search-form__image-button" src={SearchImageButton} alt="Изображение поиска" />
             </button>
             <FilterCheckbox 

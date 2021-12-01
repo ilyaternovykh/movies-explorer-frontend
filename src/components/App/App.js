@@ -80,6 +80,11 @@ function App() {
     }
   }, [currentUser, loggedIn]);
 
+  // React.useEffect(() => {
+  //   setIsLoading(true);
+
+  // }, []);
+
   const onGoBack = () => {
     history.goBack();
   };
@@ -153,9 +158,11 @@ function App() {
 
   const handleSearch = ({movie}) => {
     const movieList = JSON.parse(localStorage.getItem('movie-list'));
-    setIsLoading(true);
+    // setIsLoading(true);
+    // debugger;
 
     if (!movieList) {
+      setIsLoading(true);
       apiMovies.getMovies()
         .then(data => {
           const findedMovieList = data.filter(function(film) {
@@ -163,24 +170,30 @@ function App() {
           })
 
           if (isShortFilm === true) {
+
             setResultMovies(filterMovies(findedMovieList));
+            setIsLoading(false);
           } else {
             setResultMovies(findedMovieList);
+            setIsLoading(false);
           }
           localStorage.setItem("movie-list", JSON.stringify(data));
         }).catch(err => console.error(err))
     } else {
-      const findedLocalMovieList = movieList.filter(function(film) {
+        setIsLoading(true);
+        const findedLocalMovieList = movieList.filter(function(film) {
+
         return film.nameRU.toLowerCase().includes(movie.toLowerCase());
       })
 
       if (isShortFilm === true) {
         setResultMovies(filterMovies(findedLocalMovieList));
+        setIsLoading(false);
       } else {
         setResultMovies(findedLocalMovieList);
+        setIsLoading(false);
       }
     }
-    setIsLoading(false);
   }
 
   const filteredSavedMovies = isShortSavedFilm ? savedLocalMovies.filter((film) => film.duration <= 40) : savedLocalMovies;
