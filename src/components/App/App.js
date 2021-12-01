@@ -314,6 +314,12 @@ function App() {
     localStorage.removeItem('token');
     localStorage.removeItem('saved-movie-list');
     localStorage.removeItem('movie-list');
+    localStorage.clear();
+    setIsShortFilm(false);
+    setIsShortSavedFilm(false);
+    setSavedLocalMovies([]);
+    setResultMovies([]);
+    setСurrentUser({});
     setLoggedIn(false);
     history.push('/');
   }
