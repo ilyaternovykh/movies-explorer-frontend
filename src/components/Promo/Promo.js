@@ -2,7 +2,6 @@ import promoImagePath from '../../images/promo-image.svg';
 import NavButton from '../NavButton/NavButton';
 
 function Promo({handleButtonClick}) {
-  // console.log(handleButtonClick);
 
   return(
     <section className="promo page-padding">

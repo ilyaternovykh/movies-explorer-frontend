@@ -2,7 +2,6 @@ import { forwardRef } from "react";
 import SectionTitle from "../SectionTitle/SectionTitle";
 
 const AboutProject = forwardRef((props, ref ) => {
-  // const props = props;
 
   return(
     <section id='about-project' className="about-project page-padding" ref={ref}>

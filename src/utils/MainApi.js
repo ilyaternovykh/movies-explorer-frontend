@@ -85,8 +85,8 @@ class Api {
 
 
 const api = new Api({
-  // baseUrl: 'https://api.movies-explorer.it.nomoredomains.work'
-  baseUrl: 'http://localhost:3000'
+  baseUrl: 'https://api.movies-explorer.it.nomoredomains.work'
+  // baseUrl: 'http://localhost:3000'
 });
 
 export default api;

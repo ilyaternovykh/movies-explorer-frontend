@@ -34,9 +34,6 @@ function App() {
     status: false,
     visibleButton: false
   });
-  // const [savedMoviesForSearch, setSavedMoviesForSearch] = React.useState(
-  //    JSON.parse(localStorage.getItem('saved-movie-list'))
-  // );
 
 
   const history = useHistory();
@@ -146,10 +143,6 @@ function App() {
     .then(data => {
       setСurrentUser(data);
       setIsInfoTooltipOpen(true);
-      // setReqStatus({
-      //   visible: true,
-      //   status: true
-      // });
       closeFormButton();
     })
     .catch((err) => {
@@ -163,8 +156,6 @@ function App() {
 
   const handleSearch = ({movie}) => {
     const movieList = JSON.parse(localStorage.getItem('movie-list'));
-    // setIsLoading(true);
-    // debugger;
 
     if (!movieList) {
       setIsLoading(true);
@@ -203,24 +194,18 @@ function App() {
 
   const handleSavedSearch = ({movie}) => {
       const savedMovieList = JSON.parse(localStorage.getItem('saved-movie-list'));
-      // setSavedMoviesForSearch(savedMovieList);
-      // debugger;
  
       if (savedMovieList) {
         const findedSavedMovieList = savedMovieList.filter(function(film) {
           return film.nameRU.toLowerCase().includes(movie.toLowerCase());
         })
  
-        // setFindedSavedMovies(findedSavedMovieList);
-        // setFilteredSavedMovies(filterMovies(findedSavedMovieList));
-        // setSavedMoviesForSearch(findedSavedMovieList);
- 
         if (isShortSavedFilm === true) {
           setSavedLocalMovies(filterMovies(findedSavedMovieList));
-          // debugger;
+
         } else {
           setSavedLocalMovies(findedSavedMovieList);
-          // debugger;
+          
         }
       }
     }

@@ -29,12 +29,6 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
 
   const compareUserData = currentUser.name === userData.name && currentUser.email === userData.email;
   
-  // console.log(`currentUser.name - ${currentUser.name}`)
-  // console.log(`userData.name - ${userData.name}`)
-  // console.log(`currentUser.email - ${currentUser.email}`)
-  // console.log(`userData.email - ${userData.email}`)
-  // console.log(`isValid - ${isValid}`)
-  // console.log(`compareUserData - ${compareUserData}`)
 
   return (
     <>
@@ -58,7 +52,6 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
                   minLength="2"
                   maxLength="30"
                   value={userData.name || ""}
-                  // placeholder={currentUser.name}
                   onChange={handleChange}
                   required
                 />
@@ -73,7 +66,6 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
                   type="email"
                   pattern="^[^\s@]+@[^\s@]+\.[^\s@]+$"
                   value={userData.email || ""}
-                  // placeholder={currentUser.email}
                   onChange={handleChange}
                   required
                 />
@@ -90,7 +82,6 @@ function Profile({ button, isOpen, onClose, onFormButton, loggedIn, menuValue, o
               }
               <button 
                 className={`form__submit form-profile__submit ${reqStatus.status ? '' : 'form-profile__submit_enable'} ${isValid && !compareUserData ? '' : 'form__submit_type_disabled'}`}
-                // onClick={onClose}
                 disabled={compareUserData}
               >
                 {button}
