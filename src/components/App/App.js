@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch, useHistory, useLocation } from 'react-router-dom';
+import { Route, Switch, useHistory, useLocation, Redirect } from 'react-router-dom';
 import { CurrentUserContext } from '../../contexts/CurrentUserContext'
 import Header from '../Header/Header';
 import Main from '../Main/Main';
@@ -83,10 +83,12 @@ function App() {
     }
   }, [currentUser, loggedIn]);
 
-  // React.useEffect(() => {
-  //   setIsLoading(true);
+  React.useEffect(() => {
+    if (currentUser && (location.pathname === "signin" || location.pathname === "signup")) {
+      history.replace('/');
+    }
 
-  // }, []);
+  }, [currentUser, history, location]);
 
   const onGoBack = () => {
     history.goBack();
@@ -372,20 +374,28 @@ function App() {
             <Footer />
           </Route>
           <Route path="/signup">
-            <Register 
-              button="Зарегистриоваться"
-              handleRegister={handleRegister}
-              reqStatus={reqStatus}
-              setReqStatus={setReqStatus}
-            />
+            {!loggedIn ? (
+              <Register 
+                button="Зарегистриоваться"
+                handleRegister={handleRegister}
+                reqStatus={reqStatus}
+                setReqStatus={setReqStatus}
+              />
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route path="/signin">
-            <Login
-              button="Войти"
-              handleLogin={handleLogin}
-              reqStatus={reqStatus}
-              setReqStatus={setReqStatus}
-            />
+            {!loggedIn ? (
+              <Login
+                button="Войти"
+                handleLogin={handleLogin}
+                reqStatus={reqStatus}
+                setReqStatus={setReqStatus}
+              />
+            ) : (
+              <Redirect to="/" />
+            )}
           </Route>
           <Route path="*">
             <PageNotFound 
