@@ -34,6 +34,9 @@ function App() {
     status: false,
     visibleButton: false
   });
+  // const [savedMoviesForSearch, setSavedMoviesForSearch] = React.useState(
+  //    JSON.parse(localStorage.getItem('saved-movie-list'))
+  // );
 
 
   const history = useHistory();
@@ -196,6 +199,30 @@ function App() {
     }
   }
 
+  const handleSavedSearch = ({movie}) => {
+      const savedMovieList = JSON.parse(localStorage.getItem('saved-movie-list'));
+      // setSavedMoviesForSearch(savedMovieList);
+      // debugger;
+ 
+      if (savedMovieList) {
+        const findedSavedMovieList = savedMovieList.filter(function(film) {
+          return film.nameRU.toLowerCase().includes(movie.toLowerCase());
+        })
+ 
+        // setFindedSavedMovies(findedSavedMovieList);
+        // setFilteredSavedMovies(filterMovies(findedSavedMovieList));
+        // setSavedMoviesForSearch(findedSavedMovieList);
+ 
+        if (isShortSavedFilm === true) {
+          setSavedLocalMovies(filterMovies(findedSavedMovieList));
+          // debugger;
+        } else {
+          setSavedLocalMovies(findedSavedMovieList);
+          // debugger;
+        }
+      }
+    }
+
   const filteredSavedMovies = isShortSavedFilm ? savedLocalMovies.filter((film) => film.duration <= 40) : savedLocalMovies;
   const filteredResultMovies = isShortFilm ? resultMovies.filter((film) => film.duration <= 40) : resultMovies;
 
@@ -317,6 +344,7 @@ function App() {
             filterStatus={isShortSavedFilm}
             setIsShortFilm ={setIsShortSavedFilm}
             onCardDelete={handleCardDelete}
+            handleSearch={handleSavedSearch}
           />
           <ProtectedRoute
             exact path="/profile"
